@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Linketinder</title>
+    <meta name="Descrição" content="Projeto ZG Hero da trilha de Typescript da Acelera ZG.">
+    <meta name="Autora" content="Veronica Scislewski">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+<div class="container">
+    <!-- Página principal -->
+    <div class="caixa">
+        <h1>linketinder.</h1>
+        <button id="botaoCadastroCandidato">Cadastro Candidato</button>
+        <button id="botaoCadastroEmpresa">Cadastro Empresa</button>
+        <button id="botaoListaVagas">Lista de Vagas</button>
+        <button id="botaoListaCandidatos">Lista de Candidatos</button>
+
+        <!-- Cadastro de Candidato -->
+        <div class="modal-container" id="modal_container_cadastro_candidato">
+            <div class="modal">
+                <h1>cadastro de candidato.</h1>
+                <form action="">
+                    <label for="nomeCandidato"></label><input type="text" name="nome" id="nomeCandidato" placeholder="Nome">
+                    <label for="emailCandidato"></label><input type="text" name="email" id="emailCandidato" placeholder="Email">
+                    <label for="cepCandidato"></label><input type="text" name="cep" id="cepCandidato" placeholder="CEP">
+                    <label for="estadoCandidato"></label><input type="text" name="estado" id="estadoCandidato" placeholder="Estado">
+                    <label for="paisCandidato"></label><input type="text" name="pais" id="paisCandidato" placeholder="País">
+                    <label for="descricaoCandidato"></label><input type="text" name="descricao" id="descricaoCandidato" placeholder="Descrição">
+                    <label for="cpfCandidato"></label><input type="text" name="cpf" id="cpfCandidato" placeholder="CPF">
+                    <label for="idadeCandidato"></label><input type="text" name="idade" id="idadeCandidato" placeholder="Idade">
+                    <label>
+                        <input type="checkbox" name="competencia" id = "python" value="python">
+                    </label>Python<br>
+                    <label>
+                        <input type="checkbox" name="competencia" id = "java" value="java">
+                    </label>Java<br>
+                    <label>
+                        <input type="checkbox" name="competencia" id = "groovy" value="groovy">
+                    </label>Groovy<br>
+                    <label>
+                        <input type="checkbox" name="competencia" id = "typescript" value="typescript">
+                    </label>Typescript<br>
+                    <label>
+                        <input type="checkbox" name="competencia" id = "javascript" value="javascript">
+                    </label>Javascript<br>
+                </form>
+                <button id="botaoSalvarCadastroCandidato">Salvar & Fechar</button>
+            </div>
+        </div>
+
+        <!-- Cadastro de Empresa -->
+        <div class="modal-container" id="modal_container_cadastro_empresa">
+            <div class="modal">
+                <h1>cadastro de empresa.</h1>
+                <form action="">
+                    <label for="nomeEmpresa"></label><input type="text" name="nome" id="nomeEmpresa" placeholder="Nome">
+                    <label for="emailEmpresa"></label><input type="text" name="email" id="emailEmpresa" placeholder="Email">
+                    <label for="cepEmpresa"></label><input type="text" name="cep" id="cepEmpresa" placeholder="CEP">
+                    <label for="estadoEmpresa"></label><input type="text" name="estado" id="estadoEmpresa" placeholder="Estado">
+                    <label for="paisEmpresa"></label><input type="text" name="pais" id="paisEmpresa" placeholder="País">
+                    <label for="descricaoEmpresa"></label><input type="text" name="descricao" id="descricaoEmpresa" placeholder="Descrição">
+                    <label for="cnpjEmpresa"></label><input type="text" name="cnpj" id="cnpjEmpresa" placeholder="CNPJ">
+                </form>
+                <button id="botaoSalvarCadastroEmpresa">Salvar & Fechar</button>
+            </div>
+        </div>
+
+        <!-- Lista de Vagas -->
+        <div class="modal-container" id="modal_container_lista_vagas">
+            <div class="modal">
+                <h1>lista de vagas.</h1>
+                <p>Em progresso.</p>
+                <button id="botaoFecharListaVagas">Fechar</button>
+            </div>
+        </div>
+
+        <!-- Lista de Candidatos -->
+        <div class="modal-container" id="modal_container_lista_candidatos">
+            <div class="modal">
+                <h1>lista de candidatos.</h1>
+                <p>Em progresso.</p>
+                <button id="botaoFecharListaCandidatos">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./linketinder.js" defer></script>
+</body>
+</html>
