@@ -12,7 +12,7 @@ class TestePessoaFisica {
     //when
     @Test
     public void testePessoaFisica(){
-        PessoaFisica pessoaFisicaTeste = new PessoaFisica("Teste de Nome", "emailteste@acelerazg.com", "80808-888", "Goiás", "Brasil", "Descrição de Teste", "080.808.080-80", 33)
+        PessoaFisica pessoaFisicaTeste = new PessoaFisica("Teste de Nome", "emailteste@acelerazg.com", "80808-888", "Goiás", "Brasil", "Descrição de Teste", "080.808.080-80", "Formação acadêmica",33)
 
         competencias << "Competência 1"
         competencias << "Competência 2"
@@ -26,7 +26,7 @@ class TestePessoaFisica {
 
     @Test
     void testeCadastroPessoaFisica(){
-        PessoaFisica pessoaFisicaTeste = new PessoaFisica("Teste de Nome", "emailteste@acelerazg.com", "80808-888", "Goiás", "Brasil", "Descrição de Teste", "080.808.080-80", 33)
+        PessoaFisica pessoaFisicaTeste = new PessoaFisica("Teste de Nome", "emailteste@acelerazg.com", "80808-888", "Goiás", "Brasil", "Descrição de Teste", "080.808.080-80", "Formação acadêmica",33)
 
         competencias << "Competência 1"
         competencias << "Competência 2"

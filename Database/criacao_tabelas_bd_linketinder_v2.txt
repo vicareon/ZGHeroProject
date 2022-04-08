@@ -1,0 +1,67 @@
+CREATE TABLE empresas (
+	id_emp serial,
+	nome_emp VARCHAR(255) NOT NULL,
+	email_emp VARCHAR(255) NOT NULL,
+	estado_emp VARCHAR(255) NOT NULL,
+	pais_emp VARCHAR(255) NOT NULL,
+	descricao_emp VARCHAR(255) NOT NULL,
+	cnpj_emp VARCHAR(255) PRIMARY KEY,
+	senha_emp VARCHAR(255) NOT NULL,
+	cep_emp VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE vagas (
+	id_vgs serial PRIMARY KEY,
+	nome_vgs VARCHAR(255) NOT NULL,
+	estado_vgs VARCHAR(255) NOT NULL,
+	descricao_vgs VARCHAR(255) NOT NULL,
+	empresa_vgs VARCHAR(255) NOT NULL,
+	competencias_vgs VARCHAR[] NOT NULL,
+	CONSTRAINT fk_vagas
+		FOREIGN KEY(empresa_vgs)
+			REFERENCES empresas(cnpj_emp)
+);
+
+CREATE TABLE candidatos (
+    id_cnd serial,
+    nome_cnd VARCHAR(255) NOT NULL,
+    email_cnd VARCHAR(255) NOT NULL,
+    cep_cnd VARCHAR(255) NOT NULL,
+    estado_cnd VARCHAR(255) NOT NULL,
+    pais_cnd VARCHAR(255) NOT NULL,
+    descricao_cnd VARCHAR(255) NOT NULL,
+    cpf_cnd VARCHAR(255) PRIMARY KEY,
+    formacao_cnd VARCHAR(255) NOT NULL,
+    idade_cnd VARCHAR(255) NOT NULL,
+    senha_cnd VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE competencias (
+    id_cmp serial,
+    nome_cmp VARCHAR(255) PRIMARY KEY
+);
+
+CREATE TABLE candidatos_competencias (
+    id_cnd VARCHAR(255) NOT NULL,
+    id_cmp VARCHAR(255) NOT NULL,
+    CONSTRAINT fk_competencias_id_cnd
+        FOREIGN KEY (id_cnd)
+            REFERENCES candidatos(cpf_cnd),
+    CONSTRAINT fk_competencias_nome_cmp
+        FOREIGN KEY (id_cmp)
+            REFERENCES competencias(nome_cmp)
+);
+
+INSERT INTO candidatos_competencias VALUES
+('00000000001', 'Java'),
+('00000000001', 'Python'),
+('00000000001', 'Groovy'),
+('00000000002', 'Javascript'),
+('00000000002', 'Typescript'),
+('00000000003', 'Java'),
+('00000000004', 'Python'),
+('00000000004', 'Groovy'),
+('00000000005', 'Java'),
+('00000000005', 'Javascript');
+
+

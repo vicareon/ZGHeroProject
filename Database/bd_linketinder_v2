@@ -1,0 +1,377 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.10 (Ubuntu 12.10-1.pgdg20.04+1+b1)
+-- Dumped by pg_dump version 14.2 (Ubuntu 14.2-1.pgdg20.04+1+b1)
+
+-- Started on 2022-04-08 16:36:08 -03
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3013 (class 1262 OID 17430)
+-- Name: linketinder; Type: DATABASE; Schema: -; Owner: postgres
+--
+
+CREATE DATABASE linketinder WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'en_US.UTF-8';
+
+
+ALTER DATABASE linketinder OWNER TO postgres;
+
+\connect linketinder
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 207 (class 1259 OID 17551)
+-- Name: candidatos; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.candidatos (
+    id_cnd integer NOT NULL,
+    nome_cnd character varying(255) NOT NULL,
+    email_cnd character varying(255) NOT NULL,
+    cep_cnd character varying(255) NOT NULL,
+    estado_cnd character varying(255) NOT NULL,
+    pais_cnd character varying(255) NOT NULL,
+    descricao_cnd character varying(255) NOT NULL,
+    cpf_cnd character varying(255) NOT NULL,
+    formacao_cnd character varying(255) NOT NULL,
+    idade_cnd character varying(255) NOT NULL,
+    senha_cnd character varying(10) NOT NULL
+);
+
+
+ALTER TABLE public.candidatos OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 17568)
+-- Name: candidatos_competencias; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.candidatos_competencias (
+    id_cnd character varying(255) NOT NULL,
+    id_cmp character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.candidatos_competencias OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 17549)
+-- Name: candidatos_id_cnd_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.candidatos_id_cnd_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.candidatos_id_cnd_seq OWNER TO postgres;
+
+--
+-- TOC entry 3014 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: candidatos_id_cnd_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.candidatos_id_cnd_seq OWNED BY public.candidatos.id_cnd;
+
+
+--
+-- TOC entry 209 (class 1259 OID 17562)
+-- Name: competencias; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.competencias (
+    id_cmp integer NOT NULL,
+    nome_cmp character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.competencias OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 17560)
+-- Name: competencias_id_cmp_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.competencias_id_cmp_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.competencias_id_cmp_seq OWNER TO postgres;
+
+--
+-- TOC entry 3015 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: competencias_id_cmp_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.competencias_id_cmp_seq OWNED BY public.competencias.id_cmp;
+
+
+--
+-- TOC entry 203 (class 1259 OID 17472)
+-- Name: empresas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.empresas (
+    id_emp integer,
+    nome_emp character varying(255) NOT NULL,
+    email_emp character varying(255) NOT NULL,
+    estado_emp character varying(255) NOT NULL,
+    pais_emp character varying(255) NOT NULL,
+    descricao_emp character varying(255) NOT NULL,
+    cnpj_emp character varying(255) NOT NULL,
+    senha_emp character varying(255) NOT NULL,
+    cep_emp character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.empresas OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 17470)
+-- Name: empresas_id_emp_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.empresas_id_emp_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.empresas_id_emp_seq OWNER TO postgres;
+
+--
+-- TOC entry 3016 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: empresas_id_emp_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.empresas_id_emp_seq OWNED BY public.empresas.id_emp;
+
+
+--
+-- TOC entry 205 (class 1259 OID 17483)
+-- Name: vagas; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.vagas (
+    id_vgs integer NOT NULL,
+    nome_vgs character varying(255) NOT NULL,
+    estado_vgs character varying(255) NOT NULL,
+    descricao_vgs character varying(255) NOT NULL,
+    empresa_vgs character varying(255) NOT NULL,
+    competencias_vgs character varying[] NOT NULL
+);
+
+
+ALTER TABLE public.vagas OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 17481)
+-- Name: vagas_id_vgs_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.vagas_id_vgs_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.vagas_id_vgs_seq OWNER TO postgres;
+
+--
+-- TOC entry 3017 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: vagas_id_vgs_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.vagas_id_vgs_seq OWNED BY public.vagas.id_vgs;
+
+
+--
+-- TOC entry 2860 (class 2604 OID 17554)
+-- Name: candidatos id_cnd; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.candidatos ALTER COLUMN id_cnd SET DEFAULT nextval('public.candidatos_id_cnd_seq'::regclass);
+
+
+--
+-- TOC entry 2861 (class 2604 OID 17565)
+-- Name: competencias id_cmp; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.competencias ALTER COLUMN id_cmp SET DEFAULT nextval('public.competencias_id_cmp_seq'::regclass);
+
+
+--
+-- TOC entry 2858 (class 2604 OID 17475)
+-- Name: empresas id_emp; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.empresas ALTER COLUMN id_emp SET DEFAULT nextval('public.empresas_id_emp_seq'::regclass);
+
+
+--
+-- TOC entry 2859 (class 2604 OID 17486)
+-- Name: vagas id_vgs; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.vagas ALTER COLUMN id_vgs SET DEFAULT nextval('public.vagas_id_vgs_seq'::regclass);
+
+
+--
+-- TOC entry 3004 (class 0 OID 17551)
+-- Dependencies: 207
+-- Data for Name: candidatos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.candidatos (id_cnd, nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, formacao_cnd, idade_cnd, senha_cnd) VALUES (1, 'Candidato 1', 'candidato1@zg.com.br', '00000-001', 'Goiás', 'Brasil', 'Descrição do Candidato 1.', '00000000001', 'Ensino Técnico', '19', 'senha001');
+INSERT INTO public.candidatos (id_cnd, nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, formacao_cnd, idade_cnd, senha_cnd) VALUES (2, 'Candidato 2', 'candidato2@zg.com.br', '00000-002', 'São Paulo', 'Brasil', 'Descrição do Candidato 2.', '00000000002', 'Bacharelado', '23', 'senha002');
+INSERT INTO public.candidatos (id_cnd, nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, formacao_cnd, idade_cnd, senha_cnd) VALUES (3, 'Candidato 3', 'candidato3@zg.com.br', '00000-003', 'Santa Catarina', 'Brasil', 'Descrição do Candidato 3.', '00000000003', 'Mestrado', '26', 'senha003');
+INSERT INTO public.candidatos (id_cnd, nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, formacao_cnd, idade_cnd, senha_cnd) VALUES (4, 'Candidato 4', 'candidato4@zg.com.br', '00000-004', 'Espírito Santo', 'Brasil', 'Descrição do Candidato 4.', '00000000004', 'Ensino Médio', '21', 'senha004');
+INSERT INTO public.candidatos (id_cnd, nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, formacao_cnd, idade_cnd, senha_cnd) VALUES (5, 'Candidato 5', 'candidato5@zg.com.br', '00000-005', 'Rio de Janeiro', 'Brasil', 'Descrição do Candidato 5.', '00000000005', 'Tecnólogo', '18', 'senha005');
+
+
+--
+-- TOC entry 3007 (class 0 OID 17568)
+-- Dependencies: 210
+-- Data for Name: candidatos_competencias; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000001', 'Java');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000001', 'Python');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000001', 'Groovy');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000002', 'Javascript');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000002', 'Typescript');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000003', 'Java');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000004', 'Python');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000004', 'Groovy');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000005', 'Java');
+INSERT INTO public.candidatos_competencias (id_cnd, id_cmp) VALUES ('00000000005', 'Javascript');
+
+
+--
+-- TOC entry 3006 (class 0 OID 17562)
+-- Dependencies: 209
+-- Data for Name: competencias; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.competencias (id_cmp, nome_cmp) VALUES (1, 'Java');
+INSERT INTO public.competencias (id_cmp, nome_cmp) VALUES (2, 'Python');
+INSERT INTO public.competencias (id_cmp, nome_cmp) VALUES (3, 'Groovy');
+INSERT INTO public.competencias (id_cmp, nome_cmp) VALUES (4, 'Typescript');
+INSERT INTO public.competencias (id_cmp, nome_cmp) VALUES (5, 'Javascript');
+
+
+--
+-- TOC entry 3000 (class 0 OID 17472)
+-- Dependencies: 203
+-- Data for Name: empresas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (1, 'Empresa 1', 'empresa1@zg.com.br', 'Goiás', 'Brasil', 'Descrição da Empresa 1', '00000000006', 'senha600', '00000-006');
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (2, 'Empresa 2', 'empresa2@zg.com.br', 'São Paulo', 'Brasil', 'Descrição da Empresa 2', '00000000007', 'senha700', '00000-007');
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (3, 'Empresa 3', 'empresa3@zg.com.br', 'Santa Catarina', 'Brasil', 'Descrição da Empresa 3', '00000000008', 'senha800', '00000-008');
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (4, 'Empresa 4', 'empresa4@zg.com.br', 'Espírito Santo', 'Brasil', 'Descrição da Empresa 4', '00000000009', 'senha900', '00000-009');
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (5, 'Empresa 5', 'empresa5@zg.com.br', 'Distrito Federal', 'Brasil', 'Descrição da Empresa 5', '00000000010', 'senha1000', '00000-010');
+INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (7, 'Empresa 6', 'empresa6@zg.com.br', 'Distrito Federal', 'Brasil', 'Filial da Monster de Mango Loco', '00000000011', 'senha1001', '00000-011');
+
+
+--
+-- TOC entry 3002 (class 0 OID 17483)
+-- Dependencies: 205
+-- Data for Name: vagas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (1, 'Vaga 1', 'Goiás', 'Descrição da vaga 1.', '00000000006', '{Python,Java}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (2, 'Vaga 2', 'Goiás', 'Descrição da vaga 2.', '00000000006', '{Python}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (3, 'Vaga 3', 'Bahia', 'Descrição da vaga 3.', '00000000007', '{Javascript,Typescript}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (4, 'Vaga 4', 'Amapá', 'Descrição da vaga 4.', '00000000008', '{Groovy,Java}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (5, 'Vaga 5', 'Tocantins', 'Descrição da vaga 5.', '00000000009', '{Java}');
+
+
+--
+-- TOC entry 3018 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: candidatos_id_cnd_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.candidatos_id_cnd_seq', 5, true);
+
+
+--
+-- TOC entry 3019 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: competencias_id_cmp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.competencias_id_cmp_seq', 5, true);
+
+
+--
+-- TOC entry 3020 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: empresas_id_emp_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.empresas_id_emp_seq', 8, true);
+
+
+--
+-- TOC entry 3021 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: vagas_id_vgs_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.vagas_id_vgs_seq', 5, true);
+
+
+-- Completed on 2022-04-08 16:36:08 -03
+
+--
+-- PostgreSQL database dump complete
+--
+

@@ -6,17 +6,22 @@ import java.lang.reflect.Array
 
 @ToString
 class PessoaFisica extends Pessoa{
-    public String cpf
+    public String cpf, formacaoAcademica
     public int idade
     public ArrayList competencias
 
-    PessoaFisica(String nome, String email, String cep, String estado, String pais, String descricao, String cpf, int idade) {
-        super(nome, email, cep, estado, pais, descricao)
+    PessoaFisica(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cpf, String formacaoAcademica, int idade) {
+        super(nome, email, cep, estado, pais, descricao, senha)
         this.cpf = cpf
+        this.formacaoAcademica = formacaoAcademica
         this.idade = idade
     }
 
     PessoaFisica() {
+    }
+
+    void setFormacaoAcademica(String formacaoAcademica) {
+        this.formacaoAcademica = formacaoAcademica
     }
 
     void setCpf(String cpf) {
@@ -31,9 +36,25 @@ class PessoaFisica extends Pessoa{
         this.competencias = competencias
     }
 
+    String getCpf() {
+        return cpf
+    }
+
+    String getFormacaoAcademica() {
+        return formacaoAcademica
+    }
+
+    int getIdade() {
+        return idade
+    }
+
+    ArrayList getCompetencias() {
+        return competencias
+    }
+
     @Override
     String toString(){
-        return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cpf + ", " + idade + ", " + competencias.toString() + "; "
+        return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cpf + ", " + idade + ", " + formacaoAcademica + ", " + competencias.toString() + "; "
     }
 
     void cadastroPessoaFisica(){
@@ -55,6 +76,8 @@ class PessoaFisica extends Pessoa{
         this.setCpf(leitor.nextLine())
         println("Digite a idade do participante:")
         this.setIdade(leitor.nextInt())
+        println("Digite a formação acadêmica:")
+        this.setFormacaoAcademica(leitor.nextLine())
         println("Digite o número de competências que deseja adicionar:")
 
         def competencias = []
@@ -64,7 +87,8 @@ class PessoaFisica extends Pessoa{
             competencias << leitor.nextLine()
         }
         this.setCompetencias(competencias)
-
+        println("Digite a senha com no máximo 10 caracteres:")
+        this.setSenha(leitor.nextLine())
         println("Cadastro realizado com sucesso!")
         leitor.close()
     }

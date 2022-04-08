@@ -6,13 +6,17 @@ import groovy.transform.ToString
 class PessoaJuridica extends Pessoa{
     public String cnpj
 
-    PessoaJuridica(String nome, String email, String cep, String estado, String pais, String descricao, String cnpj) {
-        super(nome, email, cep, estado, pais, descricao)
+    PessoaJuridica(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cnpj) {
+        super(nome, email, cep, estado, pais, descricao, senha)
         this.cnpj = cnpj
     }
 
     void setCnpj(String cnpj) {
         this.cnpj = cnpj
+    }
+
+    String getCnpj() {
+        return cnpj
     }
 
     @Override
@@ -22,7 +26,6 @@ class PessoaJuridica extends Pessoa{
 
     void cadastroPessoaJuridica(){
         Scanner leitor = new Scanner(System.in)
-
         println("Digite o nome da empresa:")
         this.setNome(leitor.nextLine())
         println("Digite o email da empresa:")
@@ -35,10 +38,11 @@ class PessoaJuridica extends Pessoa{
         this.setPais(leitor.nextLine())
         println("Digite a descrição da empresa:")
         this.setDescricao(leitor.nextLine())
-        println("Digite o CPF da empresa:")
+        println("Digite o CNPJ da empresa:")
         this.setCnpj(leitor.nextLine())
+        println("Digite a senha com no máximo 10 caracteres:")
+        this.setSenha(leitor.nextLine())
         println("Cadastro realizado com sucesso!")
-
         leitor.close()
     }
 }
