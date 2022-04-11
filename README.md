@@ -1,6 +1,6 @@
 Esse é o projeto ZG-HERO da aplicação de Linketinder.
 
-Até agora (update 10.04.2022):
+Até agora (update 11.04.2022):
 - Backend em Groovy;
 - Validação com testes unitários (JUnit);
 - Frontend utilizando HTML, CSS e Typescript (puro) com Javascript transcrevido.
@@ -12,6 +12,7 @@ Até agora (update 10.04.2022):
 - Pequenas correções nas classes PessoaFisica e PessoaJuridica;
 - Criação da classe de Vagas;
 - Upload de arquivos .txt detalhando a criação das tabelas e inserção de dados;
-- Upload de arquivo .sql para criação de tabelas e inserção de dados (requisito do desafio que ficou faltando).
+- Upload de arquivo .sql para criação de tabelas e inserção de dados (requisito do desafio que ficou faltando);
+- Adição de Gradle.
 
 ![imagem de modelagem do banco de dados](Database/modelo_db_v2.png)
