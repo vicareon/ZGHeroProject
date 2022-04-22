@@ -42,7 +42,6 @@ class Database {
         }
     }
 
-    //listagem de tabelas
     static void listarTodosCandidatos(){
         String BUSCAR_TODOS_CANDIDATOS = "SELECT * FROM candidatos"
         try{
@@ -190,7 +189,6 @@ class Database {
         }
     }
 
-    //inserção de dados
     static void inserirDadosCandidato(PessoaFisica candidato){
         String INSERIR_CANDIDATO = "INSERT INTO candidatos (nome_cnd, email_cnd, cep_cnd, estado_cnd, pais_cnd, descricao_cnd, cpf_cnd, idade_cnd, senha_cnd, formacao_cnd) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
@@ -297,7 +295,6 @@ class Database {
         }
     }
 
-    //atualização de dados
     static void atualizarDadosCandidato(){
         println("Informe o CPF do candidato: ")
         String buscaCpf = LEITOR.nextLine()
@@ -631,8 +628,7 @@ class Database {
     não sei se esta prática é a melhor, ou a mais correta, porém é a decisão que cheguei no momento que escrevi este código e pode mudar mais pra frente.
     08-04-22
      */
-
-    //exclusão de dados
+    
     static void excluirDadosCandidato(){
         println("Informe o CPF do candidato: ")
         String buscaCpf = LEITOR.nextLine()

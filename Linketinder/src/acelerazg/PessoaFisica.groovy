@@ -2,8 +2,6 @@ package acelerazg
 
 import groovy.transform.ToString
 
-import java.lang.reflect.Array
-
 @ToString
 class PessoaFisica extends Pessoa{
     public String cpf, formacaoAcademica
@@ -57,7 +55,7 @@ class PessoaFisica extends Pessoa{
         return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cpf + ", " + idade + ", " + formacaoAcademica + ", " + competencias.toString() + "; "
     }
 
-    void cadastroPessoaFisica(){
+    void cadastrarPessoaFisica(){
         Scanner leitor = new Scanner(System.in)
 
         println("Digite o nome do participante:")

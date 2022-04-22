@@ -24,7 +24,7 @@ class PessoaJuridica extends Pessoa{
         return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cnpj + "; "
     }
 
-    void cadastroPessoaJuridica(){
+    void cadastrarPessoaJuridica(){
         Scanner leitor = new Scanner(System.in)
         println("Digite o nome da empresa:")
         this.setNome(leitor.nextLine())

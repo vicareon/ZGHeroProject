@@ -1,0 +1,33 @@
+{
+  "name": "ZGHeroProject",
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": ["./jest.test.ts"]
+  },
+  "version": "1.0.0",
+  "description": "ZGHeroProject",
+  "main": "linketinder.js",
+  "dependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/node": "^17.0.23",
+    "babel-jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0"
+  },
+  "scripts": {
+    "test": "jest --env=jsdom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vicareon/ZGHeroProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vicareon/ZGHeroProject/issues"
+  },
+  "homepage": "https://github.com/vicareon/ZGHeroProject#readme"
+}
