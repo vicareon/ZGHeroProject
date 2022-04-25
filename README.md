@@ -115,4 +115,4 @@ A modelagem de representação do banco foi realizada com o MySQLWorkbench, e a 
 - Retirada da versão 1 da entrega da trilha de Banco de Dados ✔️
 - Refazer o readme ✔️
 
-**Data de entrega**: pendente
+**Data de entrega**: 22/04/22
