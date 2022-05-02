@@ -107,8 +107,8 @@ A modelagem de representação do banco foi realizada com o MySQLWorkbench, e a 
 - Alteração de regex de telefone para um que pegue celular ou telefone fixo do Brasil ✔️
 - Adição de retorno esperado das funções de validação ✔️
 - Adição de testes para métodos de regex ✔️
-- Adição de testes para o cadastro de frontend
-- Correção de testes unitários de pessoa física e jurídica
+- Adição de testes para o cadastro de frontend (ver trilha 2)
+- Correção de testes unitários de pessoa física e jurídica (ver trilha 2)
 - Adição de feature: requisito de gráfico
 - Adição de feature: adição de vagas pela empresa
 - Correção de pasta raiz de frontend ✔️
@@ -116,3 +116,27 @@ A modelagem de representação do banco foi realizada com o MySQLWorkbench, e a 
 - Refazer o readme ✔️
 
 **Data de entrega**: 22/04/22
+
+## Trilha 2: Princípios S.O.L.I.D
+**Assunto**: Boas práticas de programação com aplicação dos princípios S.O.L.I.D
+
+**Descrição do desafio**: análise e refatoração do projeto até o momento utilizando os conceitos aprendidos:
+
+>S: Responsabilidade única
+>
+>O: Princípio aberto/fechado
+>
+>L: Substituição de Liskov
+>
+>I: Segregação de interface
+>
+>D: Inversão de dependência
+
+Para facilitar o entendimento, separei as modificações realizadas por letra.
+- S: as classes PessoaFisica e PessoaJuridica estavam com a responsabilidade de método de cadastro que não será mais utilizada ao longo do programa devido às implementações de frontend e database.
+- O: as classes Pessoa, PessoaFisica e PessoaJuridica possuem escopos bem definidos e não há a necessidade de alterá-las, apenas extendê-las caso necessário.
+- L: as classes PessoaFisica e PessoaJuridica extendem completamente a classe Pessoa e não há comportamentos exclusivos de cada classe.
+- I: como as classes não possuem métodos, não há a necessidade de implementação de interface.
+- D: a implementação desse princípio na classe de Database será especificada na trilha de design patterns. 
+
+**Data de entrega**: 01/05/2022
