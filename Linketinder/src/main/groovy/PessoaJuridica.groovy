@@ -1,46 +1,89 @@
 import groovy.transform.ToString
 
 @ToString
-class PessoaJuridica extends Pessoa{
-    public String cnpj
+class PessoaJuridica implements Pessoa{
+    private String nome, email, cep, estado, pais, descricao, senha, cnpj
 
     PessoaJuridica(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cnpj) {
-        super(nome, email, cep, estado, pais, descricao, senha)
+        this.nome = nome
+        this.email = email
+        this.cep = cep
+        this.estado = estado
+        this.pais = pais
+        this.descricao = descricao
+        this.senha = senha
         this.cnpj = cnpj
     }
 
-    void setCnpj(String cnpj) {
-        this.cnpj = cnpj
+    PessoaJuridica() {
+    }
+
+    String getNome() {
+        return nome
+    }
+
+    void setNome(String nome) {
+        this.nome = nome
+    }
+
+    String getEmail() {
+        return email
+    }
+
+    void setEmail(String email) {
+        this.email = email
+    }
+
+    String getCep() {
+        return cep
+    }
+
+    void setCep(String cep) {
+        this.cep = cep
+    }
+
+    String getEstado() {
+        return estado
+    }
+
+    void setEstado(String estado) {
+        this.estado = estado
+    }
+
+    String getPais() {
+        return pais
+    }
+
+    void setPais(String pais) {
+        this.pais = pais
+    }
+
+    String getDescricao() {
+        return descricao
+    }
+
+    void setDescricao(String descricao) {
+        this.descricao = descricao
+    }
+
+    String getSenha() {
+        return senha
+    }
+
+    void setSenha(String senha) {
+        this.senha = senha
     }
 
     String getCnpj() {
         return cnpj
     }
 
+    void setCnpj(String cnpj) {
+        this.cnpj = cnpj
+    }
+
     @Override
     String toString(){
         return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cnpj + "; "
-    }
-
-    void cadastrarPessoaJuridica(){
-        Scanner leitor = new Scanner(System.in)
-        println("Digite o nome da empresa:")
-        this.setNome(leitor.nextLine())
-        println("Digite o email da empresa:")
-        this.setEmail(leitor.nextLine())
-        println("Digite o CEP da empresa:")
-        this.setCep(leitor.nextLine())
-        println("Digite o estado da empresa:")
-        this.setEstado(leitor.nextLine())
-        println("Digite o país da empresa:")
-        this.setPais(leitor.nextLine())
-        println("Digite a descrição da empresa:")
-        this.setDescricao(leitor.nextLine())
-        println("Digite o CNPJ da empresa:")
-        this.setCnpj(leitor.nextLine())
-        println("Digite a senha com no máximo 10 caracteres:")
-        this.setSenha(leitor.nextLine())
-        println("Cadastro realizado com sucesso!")
-        leitor.close()
     }
 }

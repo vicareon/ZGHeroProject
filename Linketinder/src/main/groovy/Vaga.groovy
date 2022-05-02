@@ -1,23 +1,17 @@
 class Vaga {
-    String nome, estado, descricao, nomeEmpresa
-    ArrayList competencias
+    private String nome, estado, descricao, nomeEmpresa
+    private ArrayList<Competencia> listaCompetencias
 
-    Vaga(String nome, String estado, String descricao) {
+    Vaga(String nome, String estado, String descricao, String nomeEmpresa, ArrayList<Competencia> listaCompetencias) {
         this.nome = nome
         this.estado = estado
         this.descricao = descricao
+        this.nomeEmpresa = nomeEmpresa
+        this.listaCompetencias = listaCompetencias
     }
 
     Vaga(){
 
-    }
-
-    ArrayList getCompetencias() {
-        return competencias
-    }
-
-    void setCompetencias(ArrayList competencias) {
-        this.competencias = competencias
     }
 
     String getNome() {
@@ -49,6 +43,14 @@ class Vaga {
     }
 
     void setNomeEmpresa(PessoaJuridica empresa) {
-        this.nomeEmpresa = empresa.getCnpj()
+        this.nomeEmpresa = empresa.getNome()
+    }
+
+    ArrayList<Competencia> getListaCompetencias() {
+        return listaCompetencias
+    }
+
+    void setListaCompetencias(ArrayList<Competencia> listaCompetencias) {
+        this.listaCompetencias = listaCompetencias
     }
 }

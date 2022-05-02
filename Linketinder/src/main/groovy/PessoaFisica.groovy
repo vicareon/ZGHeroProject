@@ -1,91 +1,119 @@
 import groovy.transform.ToString
 
 @ToString
-class PessoaFisica extends Pessoa{
-    public String cpf, formacaoAcademica
+class PessoaFisica implements Pessoa{
+    private String nome, email, cep, estado, pais, descricao, senha, cpf, formacaoAcademica
     public int idade
-    public ArrayList competencias
+    public ArrayList<Competencia> listaCompetencias
 
-    PessoaFisica(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cpf, String formacaoAcademica, int idade) {
-        super(nome, email, cep, estado, pais, descricao, senha)
+    PessoaFisica(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cpf, String formacaoAcademica, int idade, ArrayList<Competencia> listaCompetencias) {
+        this.nome = nome
+        this.email = email
+        this.cep = cep
+        this.estado = estado
+        this.pais = pais
+        this.descricao = descricao
+        this.senha = senha
         this.cpf = cpf
         this.formacaoAcademica = formacaoAcademica
         this.idade = idade
+        this.listaCompetencias = listaCompetencias
     }
 
-    PessoaFisica() {
+    PessoaFisica(){
+
     }
 
-    void setFormacaoAcademica(String formacaoAcademica) {
-        this.formacaoAcademica = formacaoAcademica
+    String getNome() {
+        return nome
     }
 
-    void setCpf(String cpf) {
-        this.cpf = cpf
+    void setNome(String nome) {
+        this.nome = nome
     }
 
-    void setIdade(int idade) {
-        this.idade = idade
+    String getEmail() {
+        return email
     }
 
-    void setCompetencias(ArrayList competencias){
-        this.competencias = competencias
+    void setEmail(String email) {
+        this.email = email
+    }
+
+    String getCep() {
+        return cep
+    }
+
+    void setCep(String cep) {
+        this.cep = cep
+    }
+
+    String getEstado() {
+        return estado
+    }
+
+    void setEstado(String estado) {
+        this.estado = estado
+    }
+
+    String getPais() {
+        return pais
+    }
+
+    void setPais(String pais) {
+        this.pais = pais
+    }
+
+    String getDescricao() {
+        return descricao
+    }
+
+    void setDescricao(String descricao) {
+        this.descricao = descricao
+    }
+
+    String getSenha() {
+        return senha
+    }
+
+    void setSenha(String senha) {
+        this.senha = senha
     }
 
     String getCpf() {
         return cpf
     }
 
+    void setCpf(String cpf) {
+        this.cpf = cpf
+    }
+
     String getFormacaoAcademica() {
         return formacaoAcademica
+    }
+
+    void setFormacaoAcademica(String formacaoAcademica) {
+        this.formacaoAcademica = formacaoAcademica
     }
 
     int getIdade() {
         return idade
     }
 
-    ArrayList getCompetencias() {
-        return competencias
+    void setIdade(int idade) {
+        this.idade = idade
+    }
+
+    ArrayList<Competencia> getListaCompetencias() {
+        return listaCompetencias
+    }
+
+    void setListaCompetencias(ArrayList<Competencia> listaCompetencias) {
+        this.listaCompetencias = listaCompetencias
     }
 
     @Override
     String toString(){
-        return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cpf + ", " + idade + ", " + formacaoAcademica + ", " + competencias.toString() + "; "
-    }
-
-    void cadastrarPessoaFisica(){
-        Scanner leitor = new Scanner(System.in)
-
-        println("Digite o nome do participante:")
-        this.setNome(leitor.nextLine())
-        println("Digite o email do participante:")
-        this.setEmail(leitor.nextLine())
-        println("Digite o CEP do participante:")
-        this.setCep(leitor.nextLine())
-        println("Digite o estado do participante:")
-        this.setEstado(leitor.nextLine())
-        println("Digite o país do participante:")
-        this.setPais(leitor.nextLine())
-        println("Digite a descrição do participante:")
-        this.setDescricao(leitor.nextLine())
-        println("Digite o CPF do participante:")
-        this.setCpf(leitor.nextLine())
-        println("Digite a idade do participante:")
-        this.setIdade(leitor.nextInt())
-        println("Digite a formação acadêmica:")
-        this.setFormacaoAcademica(leitor.nextLine())
-        println("Digite o número de competências que deseja adicionar:")
-
-        def competencias = []
-        int quantidadeCompetencias = leitor.nextInt()
-        for(int i = 0; i == quantidadeCompetencias; i++){
-            println("Digite a competência:")
-            competencias << leitor.nextLine()
-        }
-        this.setCompetencias(competencias)
-        println("Digite a senha com no máximo 10 caracteres:")
-        this.setSenha(leitor.nextLine())
-        println("Cadastro realizado com sucesso!")
-        leitor.close()
+        return nome + ", " + email + ", " + cep + ", " + estado + ", " + pais + ", " + descricao + ", " + cpf + ", " + idade + ", " + formacaoAcademica + ", " + listaCompetencias.toString() + "; "
     }
 }
