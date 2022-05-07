@@ -81,11 +81,11 @@ INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, 
 INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (4, 'Empresa 4', 'empresa4@zg.com.br', 'Espírito Santo', 'Brasil', 'Descrição da Empresa 4', '00000000009', 'senha900', '00000-009');
 INSERT INTO public.empresas (id_emp, nome_emp, email_emp, estado_emp, pais_emp, descricao_emp, cnpj_emp, senha_emp, cep_emp) VALUES (5, 'Empresa 5', 'empresa5@zg.com.br', 'Distrito Federal', 'Brasil', 'Descrição da Empresa 5', '00000000010', 'senha1000', '00000-010');
 
-INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (1, 'Vaga 1', 'Goiás', 'Descrição da vaga 1.', '00000000006', '{Python,Java}');
-INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (2, 'Vaga 2', 'Goiás', 'Descrição da vaga 2.', '00000000006', '{Python}');
-INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (3, 'Vaga 3', 'Bahia', 'Descrição da vaga 3.', '00000000007', '{Javascript,Typescript}');
-INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (4, 'Vaga 4', 'Amapá', 'Descrição da vaga 4.', '00000000008', '{Groovy,Java}');
-INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (5, 'Vaga 5', 'Tocantins', 'Descrição da vaga 5.', '00000000009', '{Java}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (1, 'model.Vaga 1', 'Goiás', 'Descrição da vaga 1.', '00000000006', '{Python,Java}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (2, 'model.Vaga 2', 'Goiás', 'Descrição da vaga 2.', '00000000006', '{Python}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (3, 'model.Vaga 3', 'Bahia', 'Descrição da vaga 3.', '00000000007', '{Javascript,Typescript}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (4, 'model.Vaga 4', 'Amapá', 'Descrição da vaga 4.', '00000000008', '{Groovy,Java}');
+INSERT INTO public.vagas (id_vgs, nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (5, 'model.Vaga 5', 'Tocantins', 'Descrição da vaga 5.', '00000000009', '{Java}');
 
 
 

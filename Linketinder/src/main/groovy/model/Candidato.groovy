@@ -1,7 +1,10 @@
-class Pessoa {
-    private String nome, email, cep, estado, pais, descricao, senha
+package model
 
-    Pessoa(String nome, String email, String cep, String estado, String pais, String descricao, String senha) {
+class Candidato{
+    private String nome, email, cep, estado, pais, descricao, senha, cpf, formacaoAcademica
+    private int idade
+
+    Candidato(String nome, String email, String cep, String estado, String pais, String descricao, String senha, String cpf, String formacaoAcademica, int idade) {
         this.nome = nome
         this.email = email
         this.cep = cep
@@ -9,9 +12,13 @@ class Pessoa {
         this.pais = pais
         this.descricao = descricao
         this.senha = senha
+        this.cpf = cpf
+        this.formacaoAcademica = formacaoAcademica
+        this.idade = idade
     }
 
-    Pessoa() {
+    Candidato() {
+
     }
 
     String getNome() {
@@ -68,5 +75,29 @@ class Pessoa {
 
     void setSenha(String senha) {
         this.senha = senha
+    }
+
+    String getCpf() {
+        return cpf
+    }
+
+    void setCpf(String cpf) {
+        this.cpf = cpf
+    }
+
+    String getFormacaoAcademica() {
+        return formacaoAcademica
+    }
+
+    void setFormacaoAcademica(String formacaoAcademica) {
+        this.formacaoAcademica = formacaoAcademica
+    }
+
+    int getIdade() {
+        return idade
+    }
+
+    void setIdade(int idade) {
+        this.idade = idade
     }
 }

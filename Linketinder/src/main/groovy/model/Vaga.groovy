@@ -1,12 +1,14 @@
+package model
+
 class Vaga {
-    private String nome, estado, descricao, nomeEmpresa
+    private String nome, estado, descricao, cnpjEmpresa
     private ArrayList<Competencia> listaCompetencias
 
-    Vaga(String nome, String estado, String descricao, String nomeEmpresa, ArrayList<Competencia> listaCompetencias) {
+    Vaga(String nome, String estado, String descricao, String cnpjEmpresa, ArrayList<Competencia> listaCompetencias) {
         this.nome = nome
         this.estado = estado
         this.descricao = descricao
-        this.nomeEmpresa = nomeEmpresa
+        this.cnpjEmpresa = cnpjEmpresa
         this.listaCompetencias = listaCompetencias
     }
 
@@ -38,12 +40,12 @@ class Vaga {
         this.descricao = descricao
     }
 
-    String getNomeEmpresa() {
-        return nomeEmpresa
+    String getCnpjEmpresa() {
+        return cnpjEmpresa
     }
 
-    void setNomeEmpresa(PessoaJuridica empresa) {
-        this.nomeEmpresa = empresa.getNome()
+    void setCnpjEmpresa(Empresa empresa) {
+        this.cnpjEmpresa = empresa.getCnpj()
     }
 
     ArrayList<Competencia> getListaCompetencias() {
