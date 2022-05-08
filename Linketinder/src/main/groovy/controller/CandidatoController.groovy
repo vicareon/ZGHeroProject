@@ -110,29 +110,7 @@ class CandidatoController implements CandidatoDAO{
     }
 
     @Override
-    static int buscarCpf(String buscaCpf) {
-        String BUSCAR_POR_CPF = "SELECT * FROM candidatos WHERE cpf_cnd = ?"
-        try{
-            PreparedStatement buscarCandidato = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CPF,
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY)
-            buscarCandidato.setString(1, buscaCpf)
-            ResultSet resultado = buscarCandidato.executeQuery()
-            resultado.last()
-            return resultado.getRow()
-        } catch(Exception e){
-            e.printStackTrace()
-            println("Candidato não encontrado.")
-            return 0
-        }
-    }
-//@Override
-    void atualizarCandidato(String cpf) {
-
-    }
-
-    //@Override
-    void menuAtualizacaoCandidato(String buscaCpf, int escolhaAtualizaCandidato) {
+    void atualizarCandidato(String buscaCpf, int escolhaAtualizaCandidato, String dadoAtualizado) {
         String BUSCAR_POR_CPF = "SELECT * FROM candidatos WHERE cpf_cnd = ?"
 
         try{
@@ -145,45 +123,35 @@ class CandidatoController implements CandidatoDAO{
             int quantidadeResultado = resultado.getRow()
             resultado.beforeFirst()
 
-            if(resultado.getRow() == 1){
-                println("Escolha o campo que deseja atualizar: " +
-                        "\n1. Nome" +
-                        "\n2. Email" +
-                        "\n3. CEP" +
-                        "\n4. Estado" +
-                        "\n5. País" +
-                        "\n6. Descrição" +
-                        "\n7. Formação Acadêmica" +
-                        "\n8. Idade" +
-                        "\n9. Senha")
-
+            if(quantidadeResultado = 1){
                 switch(escolhaAtualizaCandidato){
                     case 1:
-                        atualizarNome(nome, buscaCpf)
+                        atualizarNome(dadoAtualizado, buscaCpf)
                         break
                     case 2:
-                        atualizarEmail(email)
+                        atualizarEmail(dadoAtualizado, buscaCpf)
                         break
                     case 3:
-                        atualizarCep(cep)
+                        atualizarCep(dadoAtualizado, buscaCpf)
                         break
                     case 4:
-                        atualizarEstado(estado)
+                        atualizarEstado(dadoAtualizado, buscaCpf)
                         break
                     case 5:
-                        atualizarPais(pais)
+                        atualizarPais(dadoAtualizado, buscaCpf)
                         break
                     case 6:
-                        atualizarDescricao(descricao)
+                        atualizarDescricao(dadoAtualizado, buscaCpf)
                         break
                     case 7:
-                        atualizarFormacaoAcademica(formacaoAcademica)
+                        atualizarFormacaoAcademica(dadoAtualizado, buscaCpf)
                         break
                     case 8:
-                        atualizarIdade(idade)
+                        atualizarIdade(dadoAtualizado as int, buscaCpf)
                         break
                     case 9:
-                        atualizarSenha(senha)
+                        atualizarSenha(dadoAtualizado, buscaCpf)
+                        break
                 }
             }
             else{
@@ -198,17 +166,12 @@ class CandidatoController implements CandidatoDAO{
 
     @Override
     void atualizarNome(String nomeAtualizado, String buscaCpf) {
-        if(buscarCpf(buscaCpf) == 1){
-            String ATUALIZA_NOME_CANDIDATO = "UPDATE candidatos SET nome_cnd=? WHERE cpf_cnd=?"
-            PreparedStatement atualizarNome = ConexaoFactory.conectar().prepareStatement(ATUALIZA_NOME_CANDIDATO)
-            atualizarNome.setString(1, nomeAtualizado)
-            atualizarNome.setString(2, buscaCpf)
-            atualizarNome.executeUpdate()
-            atualizarNome.close()
-        }
-        else{
-            println("Não foi possível atualizar o candidato.")
-        }
+        String ATUALIZA_NOME_CANDIDATO = "UPDATE candidatos SET nome_cnd=? WHERE cpf_cnd=?"
+        PreparedStatement atualizarNome = ConexaoFactory.conectar().prepareStatement(ATUALIZA_NOME_CANDIDATO)
+        atualizarNome.setString(1, nomeAtualizado)
+        atualizarNome.setString(2, buscaCpf)
+        atualizarNome.executeUpdate()
+        atualizarNome.close()
     }
 
     @Override

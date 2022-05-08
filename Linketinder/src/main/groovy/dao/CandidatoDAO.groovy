@@ -6,8 +6,7 @@ interface CandidatoDAO {
     void listarCandidatos()
     void inserirCandidato(Candidato candidato)
     void deletarCandidato(String buscaCpf)
-
-    int buscarCpf(String buscaCpf)
+    void atualizarCandidato(String buscaCpf, int escolhaAtualizaCandidato, String dadoAtualizado)
 
     void atualizarNome(String nome, String buscaCpf)
     void atualizarEmail(String email, String buscaCpf)

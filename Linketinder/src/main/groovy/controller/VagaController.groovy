@@ -4,7 +4,6 @@ import dao.VagaDAO
 import model.Vaga
 
 import java.sql.Array
-import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
@@ -104,16 +103,12 @@ class VagaController implements VagaDAO{
         }
     }
 
-    //@Override
-    void atualizarVaga(String cnpj) {
-        println("Informe o CNPJ da empresa: ")
-        String buscaCnpj = LEITOR.nextLine()
-
+    @Override
+    void atualizarVaga(String buscaCnpj, int escolhaAtualizarVaga, String dadoAtualizado) {
         String BUSCAR_POR_CNPJ = "SELECT * FROM vagas WHERE empresa_vgs = ?"
 
         try{
-            Connection conexao = conectar()
-            PreparedStatement atualizaVaga = conexao.prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement atualizaVaga = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             atualizaVaga.setString(1, buscaCnpj)
@@ -131,37 +126,13 @@ class VagaController implements VagaDAO{
                 LEITOR.nextLine()
                 switch(escolhaAtualizaVaga){
                     case 1:
-                        //atualiza nome
-                        println("Digite o nome atualizado: ")
-                        String nomeVgsAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_NOME_VAGA = "UPDATE vagas SET nome_vgs=? WHERE empresa_vgs=?"
-                        PreparedStatement updateNomeVaga = conexao.prepareStatement(ATUALIZA_NOME_VAGA)
-                        updateNomeVaga.setString(1, nomeVgsAtualizado)
-                        updateNomeVaga.setString(2, buscaCnpj)
-                        updateNomeVaga.executeUpdate()
-                        updateNomeVaga.close()
+                        atualizarNome(dadoAtualizado, buscaCnpj)
                         break
                     case 2:
-                        //atualiza estado
-                        println("Digite o estado atualizado: ")
-                        String estadoVgsAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_ESTADO_VAGA = "UPDATE vagas SET estado_vgs=? WHERE empresa_vgs=?"
-                        PreparedStatement updateEstadoVaga = conexao.prepareStatement(ATUALIZA_ESTADO_VAGA)
-                        updateEstadoVaga.setString(1, estadoVgsAtualizado)
-                        updateEstadoVaga.setString(2, buscaCnpj)
-                        updateEstadoVaga.executeUpdate()
-                        updateEstadoVaga.close()
+                        atualizarEstado(dadoAtualizado, buscaCnpj)
                         break
                     case 3:
-                        //atualiza descrição
-                        println("Digite a descrição atualizada: ")
-                        String descricaoVgsAtualizada = LEITOR.nextLine()
-                        String ATUALIZA_DESCRICAO_VAGA = "UPDATE vagas SET descricao_vgs=? WHERE empresa_vgs=?"
-                        PreparedStatement updateDescricaoVaga = conexao.prepareStatement(ATUALIZA_DESCRICAO_VAGA)
-                        updateDescricaoVaga.setString(1, descricaoVgsAtualizada)
-                        updateDescricaoVaga.setString(2, buscaCnpj)
-                        updateDescricaoVaga.executeUpdate()
-                        updateDescricaoVaga.close()
+                        atualizarDescricao(dadoAtualizado, buscaCnpj)
                         break
                 }
             }else{
@@ -171,6 +142,28 @@ class VagaController implements VagaDAO{
             e.printStackTrace()
             println("Não foi possível atualizar a vaga.")
             System.exit(-42)
+        }
+    }
+
+    @Override
+    boolean buscarCnpjEmpresa(String buscaCnpj) {
+        String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
+
+        PreparedStatement buscaCnpjEmpresa = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY)
+        buscaCnpjEmpresa.setString(1, buscaCnpj)
+        ResultSet resultado = buscaCnpjEmpresa.executeQuery()
+        resultado.last()
+        int quantidadeResultado = resultado.getRow()
+        resultado.beforeFirst()
+
+        if(quantidadeResultado = 1){
+            return true
+        }
+        else{
+            println("Empresa não encontrada!")
+            return false
         }
     }
 

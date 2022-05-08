@@ -3,7 +3,6 @@ package controller
 import dao.EmpresaDAO
 import model.Empresa
 
-import java.sql.Connection
 import java.sql.PreparedStatement
 import java.sql.ResultSet
 
@@ -12,8 +11,7 @@ class EmpresaController implements EmpresaDAO{
     void listarEmpresas() {
         String BUSCAR_TODAS_EMPRESAS = "SELECT * FROM empresas"
         try{
-            Connection conexao = conectar()
-            PreparedStatement empresas = conexao.prepareStatement(
+            PreparedStatement empresas = ConexaoFactory.conectar().prepareStatement(
                     BUSCAR_TODAS_EMPRESAS,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
@@ -52,9 +50,7 @@ class EmpresaController implements EmpresaDAO{
         String INSERIR_EMPRESA = "INSERT INTO empresas (Nome_Emp, Email_Emp, Estado_Emp, Pais_Emp, Descricao_Emp, Cnpj_Emp, Senha_Emp, Cep_Emp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 
         try{
-            Connection conexao = conectar()
-            PreparedStatement salvaEmpresa = conexao.prepareStatement(INSERIR_EMPRESA)
-
+            PreparedStatement salvaEmpresa = ConexaoFactory.conectar().prepareStatement(INSERIR_EMPRESA)
             salvaEmpresa.setString(1, empresa.getNome())
             salvaEmpresa.setString(2, empresa.getEmail())
             salvaEmpresa.setString(3, empresa.getEstado())
@@ -63,10 +59,8 @@ class EmpresaController implements EmpresaDAO{
             salvaEmpresa.setString(6, empresa.getCnpj())
             salvaEmpresa.setString(7, empresa.getSenha())
             salvaEmpresa.setString(8, empresa.getCep())
-
             salvaEmpresa.executeUpdate()
             salvaEmpresa.close()
-            desconectar(conexao)
         }
         catch(Exception e){
             e.printStackTrace()
@@ -76,16 +70,12 @@ class EmpresaController implements EmpresaDAO{
     }
 
     @Override
-    void deletarEmpresa(String cnpj) {
-        println("Informe o CNPJ da empresa: ")
-        String buscaCnpj = LEITOR.nextLine()
-
+    void deletarEmpresa(String buscaCnpj) {
         String DELETAR_POR_CNPJ = "DELETE FROM empresas WHERE cnpj_emp = ?"
         String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
 
         try{
-            Connection conexao = conectar()
-            PreparedStatement buscaDeletaEmpresa = conexao.prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement buscaDeletaEmpresa = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             buscaDeletaEmpresa.setString(1, buscaCnpj)
@@ -99,7 +89,6 @@ class EmpresaController implements EmpresaDAO{
                 deletaEmpresa.setString(1, buscaCnpj)
                 deletaEmpresa.executeUpdate()
                 deletaEmpresa.close()
-                desconectar(conexao)
                 println("Empresa deletada com sucesso.")
             }
             else{
@@ -113,114 +102,46 @@ class EmpresaController implements EmpresaDAO{
         }
     }
 
-    void menuAtualizacaoEmpresa(String cnpj) {
-        println("Informe o CNPJ da empresa: ")
-        String buscaCnpj = LEITOR.nextLine()
-
+    @Override
+    void atualizarEmpresa(String buscaCnpj, int escolhaAtualizarEmpresa, String dadoAtualizado) {
         String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
 
         try{
-            Connection conexao = conectar()
-            PreparedStatement atualizaEmpresa = conexao.prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement atualizaCandidato = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
-            atualizaEmpresa.setString(1, buscaCnpj)
-            ResultSet resultado = atualizaEmpresa.executeQuery()
+            atualizaCandidato.setString(1, buscaCnpj)
+            ResultSet resultado = atualizaCandidato.executeQuery()
             resultado.last()
             int quantidadeResultado = resultado.getRow()
             resultado.beforeFirst()
 
             if(quantidadeResultado = 1){
-                println("Escolha o campo que deseja atualizar: " +
-                        "\n1. Nome" +
-                        "\n2. Email" +
-                        "\n3. CEP" +
-                        "\n4. Estado" +
-                        "\n5. País" +
-                        "\n6. Descrição" +
-                        "\n7. Senha")
-                int escolhaAtualizaEmpresa = LEITOR.nextInt()
-                LEITOR.nextLine()
-                switch(escolhaAtualizaEmpresa){
+                switch(escolhaAtualizarEmpresa){
                     case 1:
-                        //atualiza nome
-                        println("Digite o nome atualizado: ")
-                        String nomeEmpAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_NOME_EMPRESA = "UPDATE empresas SET nome_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateNomeEmpresa = conexao.prepareStatement(ATUALIZA_NOME_EMPRESA)
-                        updateNomeEmpresa.setString(1, nomeEmpAtualizado)
-                        updateNomeEmpresa.setString(2, buscaCnpj)
-                        updateNomeEmpresa.executeUpdate()
-                        updateNomeEmpresa.close()
+                        atualizarNome(dadoAtualizado, buscaCnpj)
                         break
                     case 2:
-                        //atualiza email
-                        println("Digite o email atualizado: ")
-                        String emailEmpAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_EMAIL_EMPRESA = "UPDATE empresas SET email_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateEmailEmpresa = conexao.prepareStatement(ATUALIZA_EMAIL_EMPRESA)
-                        updateEmailEmpresa.setString(1, emailEmpAtualizado)
-                        updateEmailEmpresa.setString(2, buscaCnpj)
-                        updateEmailEmpresa.executeUpdate()
-                        updateEmailEmpresa.close()
+                        atualizarEmail(dadoAtualizado, buscaCnpj)
                         break
                     case 3:
-                        //atualiza cep
-                        println("Digite o CEP atualizado: ")
-                        String cepEmpAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_CEP_EMPRESA = "UPDATE empresas SET cep_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateCepEmpresa = conexao.prepareStatement(ATUALIZA_CEP_EMPRESA)
-                        updateCepEmpresa.setString(1, cepEmpAtualizado)
-                        updateCepEmpresa.setString(2, buscaCnpj)
-                        updateCepEmpresa.executeUpdate()
-                        updateCepEmpresa.close()
+                        atualizarCep(dadoAtualizado, buscaCnpj)
                         break
                     case 4:
-                        //atualiza estado
-                        println("Digite o estado atualizado: ")
-                        String estadoEmpAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_ESTADO_EMPRESA = "UPDATE empresas SET estado_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateEstadoEmpresa = conexao.prepareStatement(ATUALIZA_ESTADO_EMPRESA)
-                        updateEstadoEmpresa.setString(1, estadoEmpAtualizado)
-                        updateEstadoEmpresa.setString(2, buscaCnpj)
-                        updateEstadoEmpresa.executeUpdate()
-                        updateEstadoEmpresa.close()
+                        atualizarEstado(dadoAtualizado, buscaCnpj)
                         break
                     case 5:
-                        //atualiza pais
-                        println("Digite o país atualizado: ")
-                        String paisEmpAtualizado = LEITOR.nextLine()
-                        String ATUALIZA_PAIS_EMPRESA = "UPDATE empresas SET pais_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updatePaisEmpresa = conexao.prepareStatement(ATUALIZA_PAIS_EMPRESA)
-                        updatePaisEmpresa.setString(1, paisEmpAtualizado)
-                        updatePaisEmpresa.setString(2, buscaCnpj)
-                        updatePaisEmpresa.executeUpdate()
-                        updatePaisEmpresa.close()
+                        atualizarPais(dadoAtualizado, buscaCnpj)
                         break
                     case 6:
-                        //atualiza descricao
-                        println("Digite a descrição atualizada: ")
-                        String descricaoEmpAtualizada = LEITOR.nextLine()
-                        String ATUALIZA_DESCRICAO_EMPRESA = "UPDATE empresas SET descricao_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateDescricaoEmpresa = conexao.prepareStatement(ATUALIZA_DESCRICAO_EMPRESA)
-                        updateDescricaoEmpresa.setString(1, descricaoEmpAtualizada)
-                        updateDescricaoEmpresa.setString(2, buscaCnpj)
-                        updateDescricaoEmpresa.executeUpdate()
-                        updateDescricaoEmpresa.close()
+                        atualizarDescricao(dadoAtualizado, buscaCnpj)
                         break
                     case 7:
-                        //atualiza senha
-                        println("Digite a senha atualizada: ")
-                        String senhaEmpAtualizada = LEITOR.nextLine()
-                        String ATUALIZA_SENHA_EMPRESA = "UPDATE empresas SET senha_emp=? WHERE cnpj_emp=?"
-                        PreparedStatement updateSenhaEmpresa = conexao.prepareStatement(ATUALIZA_SENHA_EMPRESA)
-                        updateSenhaEmpresa.setString(1, senhaEmpAtualizada)
-                        updateSenhaEmpresa.setString(2, buscaCnpj)
-                        updateSenhaEmpresa.executeUpdate()
-                        updateSenhaEmpresa.close()
+                        atualizarSenha(dadoAtualizado, buscaCnpj)
                         break
                 }
-            }else{
+            }
+            else{
                 println("Empresa não encontrada!")
             }
         }catch(Exception e){

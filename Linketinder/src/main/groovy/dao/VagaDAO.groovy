@@ -6,8 +6,9 @@ interface VagaDAO {
     void listarVagas()
     void inserirVaga(Vaga vaga)
     void deletarVaga(String cnpj)
+    void atualizarVaga(String buscaCnpj, int escolhaAtualizarVaga, String dadoAtualizado)
 
-    void buscarCnpj()
+    boolean buscarCnpjEmpresa(String buscaCnpj)
 
     void atualizarNome(String nomeAtualizado, String buscaCnpj)
     void atualizarEstado(String estadoAtualizado, String buscaCnpj)

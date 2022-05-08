@@ -5,6 +5,7 @@ import controller.VagaController
 import model.Candidato
 import model.Competencia
 import model.Empresa
+import model.Vaga
 
 class Main {
     static void main(String[] args){
@@ -58,7 +59,22 @@ class Main {
 
             case 3:
                 String cpf = buscaCpf(leitor)
-                menuAtualizarCandidato(leitor, candidatoController, cpf)
+                println("Digite o dado que deseja atualizar:" +
+                        "\n1. Nome" +
+                        "\n2. Email" +
+                        "\n3. CEP" +
+                        "\n4. Estadp" +
+                        "\n5. País" +
+                        "\n6. Descrição" +
+                        "\n7. Formação Acadêmica" +
+                        "\n8. Idade" +
+                        "\n9. Senha" +
+                        "\nEscolha: ")
+                escolha = leitor.nextInt()
+                leitor.nextLine()
+                println("Digite o dado atualizado: ")
+                String dadoAtualizado = leitor.nextLine()
+                candidatoController.atualizarCandidato(cpf, escolha, dadoAtualizado)
                 break
 
             case 4:
@@ -77,10 +93,24 @@ class Main {
 
             case 7:
                 String cnpj = buscaCnpj(leitor)
-                menuAtualizarEmpresa(leitor, empresaController, cnpj)
+                println("Escolha o campo que deseja atualizar: " +
+                        "\n1. Nome" +
+                        "\n2. Email" +
+                        "\n3. CEP" +
+                        "\n4. Estado" +
+                        "\n5. País" +
+                        "\n6. Descrição" +
+                        "\n7. Senha")
+                escolha = leitor.nextInt()
+                leitor.nextLine()
+                println("Digite o dado atualizado: ")
+                String dadoAtualizado = leitor.nextLine()
+                empresaController.atualizarEmpresa(cnpj, escolha, dadoAtualizado)
                 break
 
             case 8:
+                String cnpj = buscaCnpj(leitor)
+                empresaController.deletarEmpresa(cnpj)
                 break
 
             case 9:
@@ -88,11 +118,21 @@ class Main {
                 break
 
             case 10:
+                Vaga vaga = new Vaga()
+                menuCadastroVaga(vaga, leitor, vagaController)
                 break
 
             case 11:
                 String cnpj = buscaCnpj(leitor)
-                menuAtualizarVaga(leitor, vagaController, cnpj)
+                println("Escolha o campo que deseja atualizar: " +
+                        "\n1. Nome" +
+                        "\n2. Estado" +
+                        "\n3. Descrição")
+                escolha = leitor.nextInt()
+                leitor.nextLine()
+                println("Digite o dado atualizado: ")
+                String dadoAtualizado = leitor.nextLine()
+                vagaController.atualizarVaga(cnpj, escolha, dadoAtualizado)
                 break
 
             case 12:
@@ -178,151 +218,29 @@ class Main {
         empresaController.inserirEmpresa(empresa)
     }
 
-    static void menuCadastroVaga(){
-
-    }
-
-    static void menuAtualizarCandidato(Scanner leitor, CandidatoController candidatoController, String cpf){
-        println("Escolha o campo que deseja atualizar: " +
-                "\n1. Nome" +
-                "\n2. Email" +
-                "\n3. CEP" +
-                "\n4. Estado" +
-                "\n5. País" +
-                "\n6. Descrição" +
-                "\n7. Formação Acadêmica" +
-                "\n8. Idade" +
-                "\n9. Senha")
-        int escolha = leitor.nextInt()
+    static void menuCadastroVaga(Vaga vaga, Scanner leitor, VagaController vagaController){
+        println("Digite o nome da vaga:")
+        vaga.setNome(leitor.nextLine())
+        println("Digite o estado da empresa:")
+        vaga.setEstado(leitor.nextLine())
+        println("Digite a descrição da empresa:")
+        vaga.setDescricao(leitor.nextLine())
+        println("Digite o CNPJ da empresa:")
+        vaga.setCnpjEmpresa(leitor.nextLine())
+        println("Digite o número de competências que deseja inserir: ")
+        int quantidadeCompetencias = leitor.nextInt()
         leitor.nextLine()
-
-        switch(escolha){
-            case 1:
-                println("Digite o nome atualizado: ")
-                String nomeAtualizado = leitor.nextLine()
-                candidatoController.atualizarNome(nomeAtualizado, cpf)
-                break
-            case 2:
-                println("Digite o email atualizado: ")
-                String emailAtualizado = leitor.nextLine()
-                candidatoController.atualizarEmail(emailAtualizado, cpf)
-                break
-            case 3:
-                println("Digite o CEP atualizado: ")
-                String cepAtualizado = leitor.nextLine()
-                candidatoController.atualizarCep(cepAtualizado, cpf)
-                break
-            case 4:
-                println("Digite o estado atualizado: ")
-                String estadoAtualizado = leitor.nextLine()
-                candidatoController.atualizarEstado(estadoAtualizado, cpf)
-                break
-            case 5:
-                println("Digite o país atualizado: ")
-                String paisAtualizado = leitor.nextLine()
-                candidatoController.atualizarPais(paisAtualizado, cpf)
-                break
-            case 6:
-                println("Digite a descrição atualizada: ")
-                String descricaoAtualizada = leitor.nextLine()
-                candidatoController.atualizarDescricao(descricaoAtualizada, cpf)
-                break
-            case 7:
-                println("Digite a formação acadêmica atualizada: ")
-                String formacaoAtualizado = leitor.nextLine()
-                candidatoController.atualizarFormacaoAcademica(formacaoAtualizado, cpf)
-                break
-            case 8:
-                println("Digite a idade atualizada: ")
-                int idadeAtualizada = leitor.nextInt()
-                leitor.nextLine()
-                candidatoController.atualizarIdade(idadeAtualizada, cpf)
-                break
-            case 9:
-                println("Digite a senha atualizada: ")
-                String senhaAtualizada = leitor.nextLine()
-                candidatoController.atualizarSenha(senhaAtualizada, cpf)
-                break
+        ArrayList<Competencia> listaCompetenciasVaga = new ArrayList<Competencia>()
+        for(int i = 0; i > quantidadeCompetencias; i++){
+            println("Digite o nome da competência" + (i + 1) + ": ")
+            String nomeCompetencia = leitor.nextLine()
+            Competencia competencia = new Competencia(nomeCompetencia)
+            listaCompetenciasVaga << competencia
         }
-    }
+        vaga.setListaCompetencias(listaCompetenciasVaga)
+        println("Cadastro realizado com sucesso!")
 
-    static void menuAtualizarEmpresa(Scanner leitor, EmpresaController empresaController, String cnpj){
-        println("Escolha o campo que deseja atualizar: " +
-                "\n1. Nome" +
-                "\n2. Email" +
-                "\n3. CEP" +
-                "\n4. Estado" +
-                "\n5. País" +
-                "\n6. Descrição" +
-                "\n7. Senha")
-        int escolha = leitor.nextInt()
-        leitor.nextLine()
-
-        switch(escolha){
-            case 1:
-                println("Digite o nome atualizado: ")
-                String nomeAtualizado = leitor.nextLine()
-                empresaController.atualizarNome(nomeAtualizado, cnpj)
-                break
-            case 2:
-                println("Digite o email atualizado: ")
-                String emailAtualizado = leitor.nextLine()
-                empresaController.atualizarEmail(emailAtualizado, cnpj)
-                break
-            case 3:
-                println("Digite o CEP atualizado: ")
-                String cepAtualizado = leitor.nextLine()
-                empresaController.atualizarCep(cepAtualizado, cnpj)
-                break
-            case 4:
-                println("Digite o estado atualizado: ")
-                String estadoAtualizado = leitor.nextLine()
-                empresaController.atualizarEstado(estadoAtualizado, cnpj)
-                break
-            case 5:
-                println("Digite o país atualizado: ")
-                String paisAtualizado = leitor.nextLine()
-                empresaController.atualizarPais(paisAtualizado, cnpj)
-                break
-            case 6:
-                println("Digite a descrição atualizada: ")
-                String descricaoAtualizada = leitor.nextLine()
-                empresaController.atualizarDescricao(descricaoAtualizada, cnpj)
-                break
-
-            case 7:
-                println("Digite a senha atualizada: ")
-                String senhaAtualizada = leitor.nextLine()
-                empresaController.atualizarSenha(senhaAtualizada, cnpj)
-                break
-        }
-    }
-
-    static void menuAtualizarVaga(Scanner leitor, VagaController vagaController, String cnpj){
-        println("Escolha o campo que deseja atualizar: " +
-                "\n1. Nome" +
-                "\n2. Estado" +
-                "\n3. Descrição")
-        int escolha = leitor.nextInt()
-        leitor.nextLine()
-
-        switch (escolha){
-            case 1:
-                println("Digite o nome atualizado: ")
-                String nomeAtualizado = leitor.nextLine()
-                vagaController.atualizarNome(nomeAtualizado, cnpj)
-                break
-            case 2:
-                println("Digite o estado atualizado: ")
-                String estadoAtualizado = leitor.nextLine()
-                vagaController.atualizarEstado(estadoAtualizado, cnpj)
-                break
-            case 3:
-                println("Digite a descrição atualizada: ")
-                String descricaoAtualizada = leitor.nextLine()
-                vagaController.atualizarDescricao(descricaoAtualizada, cnpj)
-                break
-        }
+        vagaController.inserirVaga(vaga)
     }
 
     static String buscaCpf(Scanner leitor){

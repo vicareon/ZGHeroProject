@@ -6,8 +6,7 @@ interface EmpresaDAO {
     void listarEmpresas()
     void inserirEmpresa(Empresa empresa)
     void deletarEmpresa(String cnpj)
-
-    void buscarCnpj()
+    void atualizarEmpresa(String buscaCnpj, int escolhaAtualizarEmpresa, String dadoAtualizado)
 
     void atualizarNome(String nomeAtualizado, String buscaCnpj)
     void atualizarEmail(String emailAtualizado, String buscaCnpj)

@@ -44,8 +44,8 @@ class Vaga {
         return cnpjEmpresa
     }
 
-    void setCnpjEmpresa(Empresa empresa) {
-        this.cnpjEmpresa = empresa.getCnpj()
+    void setCnpjEmpresa(String cnpjEmpresa) {
+        this.cnpjEmpresa = cnpjEmpresa
     }
 
     ArrayList<Competencia> getListaCompetencias() {

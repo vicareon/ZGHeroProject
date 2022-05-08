@@ -1,11 +1,8 @@
-import controller.EmpresaController
 import controller.VagaController
 import model.Competencia
-import model.Empresa
 import model.Vaga
 import org.junit.AfterClass
 import org.junit.Test
-import static org.junit.Assert.*
 
 class TesteVaga {
     @Test
@@ -19,9 +16,11 @@ class TesteVaga {
     void testeAdicionarVaga(){
         VagaController vagaController = new VagaController()
         ArrayList<Competencia> listaCompetencias = new ArrayList<Competencia>()
-        Vaga vaga = new Vaga("nome", "estado", "descricao", "nome empresa", listaCompetencias)
+        Competencia competencia = new Competencia("teste")
+        listaCompetencias << competencia
+        Vaga vaga = new Vaga("nome", "estado", "descricao", "cnpj empresa", listaCompetencias)
         vagaController.inserirVaga(vaga)
-        println("\nTeste de inserção de competência realizado!\n")
+        println("\nTeste de inserção de vaga realizado!\n")
     }
 
     @Test
@@ -35,21 +34,21 @@ class TesteVaga {
     void testeAtualizarNome(){
         VagaController vagaController = new VagaController()
         vagaController.atualizarNome("nome atualizado", "cnpj")
-        println("\nTeste de atualização de nome de empresa realizado!\n")
+        println("\nTeste de atualização de nome de vaga realizado!\n")
     }
 
     @Test
     void testeAtualizarEstado(){
         VagaController vagaController = new VagaController()
         vagaController.atualizarEstado("estado atualizado", "cnpj")
-        println("\nTeste de atualização de estado de empresa realizado!\n")
+        println("\nTeste de atualização de estado de vaga realizado!\n")
     }
 
     @Test
     void testeAtualizarDescricao(){
         VagaController vagaController = new VagaController()
         vagaController.atualizarDescricao("descrição atualizada", "cnpj")
-        println("\nTeste de atualização de descrição de empresa realizado!\n")
+        println("\nTeste de atualização de descrição de vaGA realizado!\n")
     }
 
     @AfterClass
