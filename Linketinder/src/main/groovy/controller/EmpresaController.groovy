@@ -11,7 +11,7 @@ class EmpresaController implements EmpresaDAO{
     void listarEmpresas() {
         String BUSCAR_TODAS_EMPRESAS = "SELECT * FROM empresas"
         try{
-            PreparedStatement empresas = ConexaoFactory.conectar().prepareStatement(
+            PreparedStatement empresas = Conexao.conectar().prepareStatement(
                     BUSCAR_TODAS_EMPRESAS,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
@@ -50,7 +50,7 @@ class EmpresaController implements EmpresaDAO{
         String INSERIR_EMPRESA = "INSERT INTO empresas (Nome_Emp, Email_Emp, Estado_Emp, Pais_Emp, Descricao_Emp, Cnpj_Emp, Senha_Emp, Cep_Emp) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
 
         try{
-            PreparedStatement salvaEmpresa = ConexaoFactory.conectar().prepareStatement(INSERIR_EMPRESA)
+            PreparedStatement salvaEmpresa = Conexao.conectar().prepareStatement(INSERIR_EMPRESA)
             salvaEmpresa.setString(1, empresa.getNome())
             salvaEmpresa.setString(2, empresa.getEmail())
             salvaEmpresa.setString(3, empresa.getEstado())
@@ -75,7 +75,7 @@ class EmpresaController implements EmpresaDAO{
         String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
 
         try{
-            PreparedStatement buscaDeletaEmpresa = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement buscaDeletaEmpresa = Conexao.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             buscaDeletaEmpresa.setString(1, buscaCnpj)
@@ -107,7 +107,7 @@ class EmpresaController implements EmpresaDAO{
         String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
 
         try{
-            PreparedStatement atualizaCandidato = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement atualizaCandidato = Conexao.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             atualizaCandidato.setString(1, buscaCnpj)
@@ -154,7 +154,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarNome(String nomeAtualizado, String buscaCnpj) {
         String ATUALIZA_NOME_EMPRESA = "UPDATE empresas SET nome_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarNome = ConexaoFactory.conectar().prepareStatement(ATUALIZA_NOME_EMPRESA)
+        PreparedStatement atualizarNome = Conexao.conectar().prepareStatement(ATUALIZA_NOME_EMPRESA)
         atualizarNome.setString(1, nomeAtualizado)
         atualizarNome.setString(2, buscaCnpj)
         atualizarNome.executeUpdate()
@@ -164,7 +164,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarEmail(String emailAtualizado, String buscaCnpj) {
         String ATUALIZA_EMAIL_EMPRESA = "UPDATE empresas SET email_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarEmail = ConexaoFactory.conectar().prepareStatement(ATUALIZA_EMAIL_EMPRESA)
+        PreparedStatement atualizarEmail = Conexao.conectar().prepareStatement(ATUALIZA_EMAIL_EMPRESA)
         atualizarEmail.setString(1, emailAtualizado)
         atualizarEmail.setString(2, buscaCnpj)
         atualizarEmail.executeUpdate()
@@ -174,7 +174,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarCep(String cepAtualizado, String buscaCnpj) {
         String ATUALIZA_CEP_EMPRESA = "UPDATE empresas SET cep_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarCep = ConexaoFactory.conectar().prepareStatement(ATUALIZA_CEP_EMPRESA)
+        PreparedStatement atualizarCep = Conexao.conectar().prepareStatement(ATUALIZA_CEP_EMPRESA)
         atualizarCep.setString(1, cepAtualizado)
         atualizarCep.setString(2, buscaCnpj)
         atualizarCep.executeUpdate()
@@ -184,7 +184,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarEstado(String estadoAtualizado, String buscaCnpj) {
         String ATUALIZA_ESTADO_EMPRESA = "UPDATE empresas SET estado_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarEstado = ConexaoFactory.conectar().prepareStatement(ATUALIZA_ESTADO_EMPRESA)
+        PreparedStatement atualizarEstado = Conexao.conectar().prepareStatement(ATUALIZA_ESTADO_EMPRESA)
         atualizarEstado.setString(1, estadoAtualizado)
         atualizarEstado.setString(2, buscaCnpj)
         atualizarEstado.executeUpdate()
@@ -194,7 +194,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarPais(String paisAtualizado, String buscaCnpj) {
         String ATUALIZA_PAIS_EMPRESA = "UPDATE empresas SET pais_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarPais = ConexaoFactory.conectar().prepareStatement(ATUALIZA_PAIS_EMPRESA)
+        PreparedStatement atualizarPais = Conexao.conectar().prepareStatement(ATUALIZA_PAIS_EMPRESA)
         atualizarPais.setString(1, paisAtualizado)
         atualizarPais.setString(2, buscaCnpj)
         atualizarPais.executeUpdate()
@@ -204,7 +204,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarDescricao(String descricaoAtualizada, String buscaCnpj) {
         String ATUALIZA_DESCRICAO_EMPRESA = "UPDATE empresas SET descricao_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarDescricao = ConexaoFactory.conectar().prepareStatement(ATUALIZA_DESCRICAO_EMPRESA)
+        PreparedStatement atualizarDescricao = Conexao.conectar().prepareStatement(ATUALIZA_DESCRICAO_EMPRESA)
         atualizarDescricao.setString(1, descricaoAtualizada)
         atualizarDescricao.setString(2, buscaCnpj)
         atualizarDescricao.executeUpdate()
@@ -214,7 +214,7 @@ class EmpresaController implements EmpresaDAO{
     @Override
     void atualizarSenha(String senhaAtualizada, String buscaCnpj) {
         String ATUALIZA_SENHA_EMPRESA = "UPDATE empresas SET senha_emp=? WHERE cnpj_emp=?"
-        PreparedStatement atualizarSenha = ConexaoFactory.conectar().prepareStatement(ATUALIZA_SENHA_EMPRESA)
+        PreparedStatement atualizarSenha = Conexao.conectar().prepareStatement(ATUALIZA_SENHA_EMPRESA)
         atualizarSenha.setString(1, senhaAtualizada)
         atualizarSenha.setString(2, buscaCnpj)
         atualizarSenha.executeUpdate()

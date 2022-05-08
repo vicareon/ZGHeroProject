@@ -16,7 +16,7 @@ class VagaController implements VagaDAO{
         String BUSCAR_TODAS_VAGAS = "SELECT * FROM vagas"
 
         try{
-            PreparedStatement listarVagas = ConexaoFactory.conectar().prepareStatement(
+            PreparedStatement listarVagas = Conexao.conectar().prepareStatement(
                     BUSCAR_TODAS_VAGAS,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
@@ -54,7 +54,7 @@ class VagaController implements VagaDAO{
         String INSERIR_VAGA = "INSERT INTO vagas (nome_vgs, estado_vgs, descricao_vgs, empresa_vgs, competencias_vgs) VALUES (?, ?, ?, ?, ?)"
 
         try{
-            PreparedStatement inserirVaga = ConexaoFactory.conectar().prepareStatement(INSERIR_VAGA)
+            PreparedStatement inserirVaga = Conexao.conectar().prepareStatement(INSERIR_VAGA)
             inserirVaga.setString(1, vaga.getNome())
             inserirVaga.setString(2, vaga.getEstado())
             inserirVaga.setString(3, vaga.getDescricao())
@@ -76,7 +76,7 @@ class VagaController implements VagaDAO{
         String BUSCAR_POR_CNPJ = "SELECT * FROM vagas WHERE empresa_vgs = ?"
 
         try{
-            PreparedStatement deletarVaga = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement deletarVaga = Conexao.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             deletarVaga.setString(1, buscaCnpj)
@@ -86,7 +86,7 @@ class VagaController implements VagaDAO{
             resultado.beforeFirst()
 
             if(quantidadeResultado = 1){
-                deletarVaga = ConexaoFactory.conectar().prepareStatement(DELETAR_POR_CNPJ)
+                deletarVaga = Conexao.conectar().prepareStatement(DELETAR_POR_CNPJ)
                 deletarVaga.setString(1, buscaCnpj)
                 deletarVaga.executeUpdate()
                 deletarVaga.close()
@@ -108,7 +108,7 @@ class VagaController implements VagaDAO{
         String BUSCAR_POR_CNPJ = "SELECT * FROM vagas WHERE empresa_vgs = ?"
 
         try{
-            PreparedStatement atualizaVaga = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+            PreparedStatement atualizaVaga = Conexao.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             atualizaVaga.setString(1, buscaCnpj)
@@ -149,7 +149,7 @@ class VagaController implements VagaDAO{
     boolean buscarCnpjEmpresa(String buscaCnpj) {
         String BUSCAR_POR_CNPJ = "SELECT * FROM empresas WHERE cnpj_emp = ?"
 
-        PreparedStatement buscaCnpjEmpresa = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_CNPJ,
+        PreparedStatement buscaCnpjEmpresa = Conexao.conectar().prepareStatement(BUSCAR_POR_CNPJ,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
         buscaCnpjEmpresa.setString(1, buscaCnpj)
@@ -170,7 +170,7 @@ class VagaController implements VagaDAO{
     @Override
     void atualizarNome(String nomeAtualizado, String buscaCnpj) {
         String ATUALIZA_NOME_VAGA = "UPDATE vagas SET nome_vgs=? WHERE empresa_vgs=?"
-        PreparedStatement atualizarNome = ConexaoFactory.conectar().prepareStatement(ATUALIZA_NOME_VAGA)
+        PreparedStatement atualizarNome = Conexao.conectar().prepareStatement(ATUALIZA_NOME_VAGA)
         atualizarNome.setString(1, nomeAtualizado)
         atualizarNome.setString(2, buscaCnpj)
         atualizarNome.executeUpdate()
@@ -180,7 +180,7 @@ class VagaController implements VagaDAO{
     @Override
     void atualizarEstado(String estadoAtualizado, String buscaCnpj) {
         String ATUALIZA_ESTADO_VAGA = "UPDATE vagas SET estado_vgs=? WHERE empresa_vgs=?"
-        PreparedStatement atualizarEstado = ConexaoFactory.conectar().prepareStatement(ATUALIZA_ESTADO_VAGA)
+        PreparedStatement atualizarEstado = Conexao.conectar().prepareStatement(ATUALIZA_ESTADO_VAGA)
         atualizarEstado.setString(1, estadoAtualizado)
         atualizarEstado.setString(2, buscaCnpj)
         atualizarEstado.executeUpdate()
@@ -190,7 +190,7 @@ class VagaController implements VagaDAO{
     @Override
     void atualizarDescricao(String descricaoAtualizada, String buscaCnpj) {
         String ATUALIZA_DESCRICAO_VAGA = "UPDATE vagas SET descricao_vgs=? WHERE empresa_vgs=?"
-        PreparedStatement atualizarDescricao = ConexaoFactory.conectar().prepareStatement(ATUALIZA_DESCRICAO_VAGA)
+        PreparedStatement atualizarDescricao = Conexao.conectar().prepareStatement(ATUALIZA_DESCRICAO_VAGA)
         atualizarDescricao.setString(1, descricaoAtualizada)
         atualizarDescricao.setString(2, buscaCnpj)
         atualizarDescricao.executeUpdate()

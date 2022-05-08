@@ -11,7 +11,7 @@ class CompetenciaController implements CompetenciaDAO{
     void listarCompetencias() {
         String BUSCAR_TODAS_COMPETENCIAS = "SELECT * FROM competencias"
         try{
-            PreparedStatement listarCompetencias = ConexaoFactory.conectar().prepareStatement(
+            PreparedStatement listarCompetencias = Conexao.conectar().prepareStatement(
                     BUSCAR_TODAS_COMPETENCIAS,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY
@@ -45,7 +45,7 @@ class CompetenciaController implements CompetenciaDAO{
         String INSERIR_COMPETENCIAS = "INSERT INTO competencias (nome_cmp) VALUES (?)"
 
         try{
-            PreparedStatement inserirCompetencia = ConexaoFactory.conectar().prepareStatement(INSERIR_COMPETENCIAS)
+            PreparedStatement inserirCompetencia = Conexao.conectar().prepareStatement(INSERIR_COMPETENCIAS)
             inserirCompetencia.setString(1, competencia.getNome())
             inserirCompetencia.executeUpdate()
             inserirCompetencia.close()
@@ -63,7 +63,7 @@ class CompetenciaController implements CompetenciaDAO{
         String BUSCAR_POR_NOME_COMPETENCIA = "SELECT * FROM competencias WHERE nome_cmp = ?"
 
         try{
-            PreparedStatement deletarCompetencia = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_NOME_COMPETENCIA,
+            PreparedStatement deletarCompetencia = Conexao.conectar().prepareStatement(BUSCAR_POR_NOME_COMPETENCIA,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             deletarCompetencia.setString(1, buscaNomeCompetencia)
@@ -73,7 +73,7 @@ class CompetenciaController implements CompetenciaDAO{
             resultado.beforeFirst()
 
             if(quantidadeResultado = 1){
-                deletarCompetencia = ConexaoFactory.conectar().prepareStatement(DELETAR_POR_NOME_COMPETENCIA)
+                deletarCompetencia = Conexao.conectar().prepareStatement(DELETAR_POR_NOME_COMPETENCIA)
                 deletarCompetencia.setString(1, buscaNomeCompetencia)
                 deletarCompetencia.executeUpdate()
                 deletarCompetencia.close()
@@ -96,7 +96,7 @@ class CompetenciaController implements CompetenciaDAO{
         String ATUALIZAR_NOME_COMPETENCIA = "UPDATE competencias SET nome_cmp = ? WHERE nome_cmp = ?"
 
         try{
-            PreparedStatement atualizarCompetencia = ConexaoFactory.conectar().prepareStatement(BUSCAR_POR_NOME_COMPETENCIA,
+            PreparedStatement atualizarCompetencia = Conexao.conectar().prepareStatement(BUSCAR_POR_NOME_COMPETENCIA,
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY)
             atualizarCompetencia.setString(1, buscaNomeCompetencia)
@@ -106,7 +106,7 @@ class CompetenciaController implements CompetenciaDAO{
             resultado.beforeFirst()
 
             if(quantidadeResultado = 1){
-                atualizarCompetencia = ConexaoFactory.conectar().prepareStatement(ATUALIZAR_NOME_COMPETENCIA)
+                atualizarCompetencia = Conexao.conectar().prepareStatement(ATUALIZAR_NOME_COMPETENCIA)
                 atualizarCompetencia.setString(1, nomeCompetenciaAtualizado)
                 atualizarCompetencia.setString(2, buscaNomeCompetencia)
                 atualizarCompetencia.executeUpdate()

@@ -3,7 +3,7 @@ package controller
 import java.sql.Connection
 import java.sql.DriverManager
 
-class ConexaoFactory {
+class Conexao {
     public static Connection conexao
 
     static Connection conectar(){
