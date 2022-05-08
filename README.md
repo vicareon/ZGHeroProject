@@ -140,3 +140,30 @@ Para facilitar o entendimento, separei as modificações realizadas por letra.
 - D: a implementação desse princípio na classe de Database será especificada na trilha de design patterns. 
 
 **Data de entrega**: 01/05/2022
+
+## Trilha 3: Padrões de Projeto
+**Assunto**: Design Patterns em Java
+
+**Descrição do desafio**: Refatoração do projeto com base em padrões de projeto à escolha do participante. As patterns escolhidas foram *DAO* e *Singleton*. Além disso, escolhi renomear PessoaFisica e PessoaJuridica para Candidato e Empresa, respectivamente, e eliminei a interface Pessoa para melhorar a leitura do código e torná-lo mais intuitivo. 
+
+- DAO: essa pattern foi escolhida com o objetivo de abstração e encapsulamento das classes Candidato, Empresa, Vaga e Competência.
+- Singleton: como a conexão com o banco de dados precisa apenas de uma instância, essa pattern foi escolhida para dar conta do recado.
+
+**Data de entrega**: 08/05/2022
+
+## Trilha 4: Padrão MVC
+**Assunto**: Pattern de Model, View e Controller em Java
+
+**Descrição do desafio**: Refatoração do projeto com base no padrão MVC. O frontend realiza a visão de View, portanto, o backend foi dividido em 3 pacotes: model, dao e controller. Já com a bagagem das trilhas anteriores, também implementei mudanças que eliminaram as violações do princípio S.O.L.I.D:
+
+>S: a classe Database possuía várias responsabilidades, sendo considerada uma "God Class". Isso fez sentido na trilha 7, pois meus conhecimentos não eram suficientes para reconhecer a necessidade de otimização e também devido ao prazo de entrega. Assim, os métodos da classe foram distribuídos nas classes de controller. 
+>
+>O: As classes de Candidato, Empresa, Vaga e Competência já tinham escopos bem definidos, então não houve uma alteração significativa com base nesse princípio.
+>
+>L: como houve a refatoração de Candidato e Empresa, a herança de Pessoa para PessoaFisica e PessoaJuridica foi eliminada.
+>
+>I: as interfaces aplicadas nas classes tem todos os métodos implementados.
+>
+>D: no projeto havia uma forte dependência no input do usuário. Assim, concentrei todos os inputs capturados pelo Scanner em uma só classe, a Main; todos os métodos implementados nas classes Controller recebem o input, permitindo a realização de testes unitários sem a necessidade de mock (o que exigiria um prazo maior de entrega devido à complexidade). 
+
+**Data de entrega**: 08/05/2022
