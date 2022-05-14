@@ -167,3 +167,8 @@ Para facilitar o entendimento, separei as modificações realizadas por letra.
 >D: no projeto havia uma forte dependência no input do usuário. Assim, concentrei todos os inputs capturados pelo Scanner em uma só classe, a Main; todos os métodos implementados nas classes Controller recebem o input, permitindo a realização de testes unitários sem a necessidade de mock (o que exigiria um prazo maior de entrega devido à complexidade). 
 
 **Data de entrega**: 08/05/2022
+
+## Trilha 5: Webservices e Microservices
+**Assunto**: Web service com client HTTP
+**Descrição do desafio**: Implementação de microsserviço de cadastro de candidato e empresa no frontend com inserção no banco de dados no backend. 
+**Data de entrega**: pendente
