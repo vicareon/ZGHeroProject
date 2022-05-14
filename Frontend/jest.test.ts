@@ -7,9 +7,7 @@ test('use jsdom in this test file', () => {
     expect(element).not.toBeNull();
 });
 
-import {PessoaFisica} from "./main/linketinder";
-
-describe("Teste de cadastro de candidato", () => {
+/*describe("Teste de cadastro de candidato", () => {
     test("Verifica o retorno do cadastro de candidato", () => {
         const candidatoTeste: PessoaFisica = {
             cadastrarCandidato(nomeCandidato: string, emailCandidato: string, cepCandidato: string, estadoCandidato: string, paisCandidato: string, descricaoCandidato: string, telefoneCandidato: string, linkedinCandidato: string, cpfCandidato: string, idadeCandidato: string) {
@@ -33,7 +31,7 @@ describe("Teste de cadastro de empresa", () => {
     test("Verifica se a empresa foi adicionada à array", () => {
         expect()
     });
-});
+});*/
 
 describe("Teste de regex de nome", () => {
     test("Verifica se o nome dado está de A até Z, sem números ou caracteres especiais", () => {
