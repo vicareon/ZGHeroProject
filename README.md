@@ -43,7 +43,7 @@ Os requisitos foram:
 
 **Data de entrega**: 28/03/22
 
-![imagem de página inicial do frontend](/Frontend/linketinder-frontend-pagina-inicial.png)
+![imagem de página inicial do frontend](/linketinder-frontend-pagina-inicial.png)
 
 ## Trilha 6: Regex
 **Assunto**: Expressões regulares aplicadas em TypeScript
@@ -169,8 +169,34 @@ Para facilitar o entendimento, separei as modificações realizadas por letra.
 **Data de entrega**: 08/05/2022
 
 ## Trilha 5: Webservices e Microservices
-**Assunto**: Web service com client HTTP
+**Assunto**: Microserviço de Cadastro de Candidato e Empresa
 
-**Descrição do desafio**: Implementação de microsserviço de cadastro de candidato e empresa no frontend com inserção no banco de dados no backend. 
+**Descrição do desafio**: Implementação de microserviço de cadastro de candidato e empresa no frontend com inserção no banco de dados no backend com caráter exploratório:
 
-**Data de entrega**: pendente
+>Repare que a integração do frontend com o microsserviço é de caráter exploratório, ou seja, você irá buscar uma solução e tentar aplicá-la em tempo hábil, caso não dê certo, basta entregar até o ponto explorado com a descrição do que foi pesquisado e tentado (é um aspecto experimental da entrega).
+
+**Comentários pessoais**: Foi a trilha que senti pela primeira vez a sensação de frustração por causa de sua complexidade. Antes de começar a implementação do microserviço, foi necessário gastar um bom tempo revisando o conteúdo de Typescript/Javascript (pois já fazia um bom tempo que eu não tinha contato) e tentando aplicar os conhecimentos adquiridos nas trilhas anteriores de Clean Code e SOLID. Depois de muita tentativa de trabalhar com módulos de exportação e importação em Typescript, optei pela conveniência/má prática de deixar todo o código em uma classe só (linketinder.ts) já que já tinha desperdiçado muito tempo nessa tentativa de refatoração. 
+
+Além disso, tive que corrigir a implementação do Gradle que não fazia sentido nesse módulo. Assim, corrigi a lacuna de conhecimento na configuração dos arquivos json de package e config porque a transpilação de TS para JS não estava funcionando corretamente - agora as dependências Babel, Jest e TSC estão devidamente instaladas e atualizadas no projeto. 
+
+Depois, veio a surpresa que o input do usuário nos formulários de cadastro não estavam mais sendo captados porque os valores estavam sendo pegos antes mesmo de ter o input de verdade: isso foi resolvido ao retirar o .value na captura de elemento e transferir para o parâmetro da função. 
+
+Também foram feitas as seguintes atualizações para alinhamento de parâmetros entre frontend e backend:
+- Retirada de declaração de classes de Candidato e Empresa, já que não tem mais a permanência separada em front e back
+- Retirada de parâmetros Linkedin e Telefone dos objetos, regex e testes unitários
+
+... e também a substituição de janelas modais para páginas HTML separadas. Não fica mais tão bonitinho, mas estão mais de acordo com meu nível de conhecimento atual.
+
+Por fim, vem a adição de fetch() com POST para os métodos de cadastro, o que nos leva para o backend. 
+
+A ideia do desafio no backend foi a seguinte: implementar um microserviço totalmente independente do resto, com uma instância de conexão com o banco de dados e o reaproveitamento dos códigos de inserção de elementos implementado nos Controllers. Infelizmente por limitação de conhecimento (além do tempo) não consegui implementar totalmente os métodos de POST (apenas o de GET), mas consegui implementar os seus endpoints por meio da criação de um servidor na porta 8080 do localhost. Assim, quando roda o main, ele dá uma mensagem quando o servidor é iniciado:
+
+![imagem de terminal com endpoint](/endpoint-microservico.jpeg)
+
+Aqui estão os tutoriais e artigos que me foram mais úteis:
+- [How to make a REST API in Java](https://www.educative.io/edpresso/how-to-make-a-rest-api-in-java), por Divine Odazie
+- [JavaScript: Fetch](https://www.devmedia.com.br/javascript-fetch/41206), da DevMedia
+- [Aprendendo Java com JDBC](https://www.devmedia.com.br/aprendendo-java-com-jdbc/29116), da DevMedia
+- [Creating a REST API](https://happycoding.io/tutorials/java-server/rest-api), por Kevin Workman
+
+**Data de entrega**: 21/05/2022
