@@ -16,6 +16,7 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-params:5.8.2'
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
 
 test {
