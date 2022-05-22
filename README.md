@@ -199,4 +199,13 @@ Aqui estão os tutoriais e artigos que me foram mais úteis:
 - [Aprendendo Java com JDBC](https://www.devmedia.com.br/aprendendo-java-com-jdbc/29116), da DevMedia
 - [Creating a REST API](https://happycoding.io/tutorials/java-server/rest-api), por Kevin Workman
 
+Para dar uma olhada no código, navegue até a branch microservice :)
+
 **Data de entrega**: 21/05/2022
+
+## Trilha 6: REST/RESTFUL API
+**Assunto**: APIs e integração definitiva entre front e backend
+
+**Descrição do desafio**: Conexão entre front e back via API REST sem utilização de frameworks com operações de cadastro, inserção de competências e vagas mapeados em endpoints e com comunicação com a model para persistência dos dados no banco de dados.
+
+**Data de entrega**: pendente
