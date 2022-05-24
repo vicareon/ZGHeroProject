@@ -1,5 +1,6 @@
 plugins {
     id 'groovy'
+    id 'war'
 }
 
 group 'org.example'
