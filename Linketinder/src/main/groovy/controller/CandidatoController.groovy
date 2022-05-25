@@ -3,12 +3,17 @@ package controller
 import dao.CandidatoDAO
 import model.Candidato
 
+import javax.servlet.annotation.WebServlet
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+import javax.servlet.http.HttpServlet
 
-class CandidatoController implements CandidatoDAO{
+class CandidatoController extends HttpServlet implements CandidatoDAO{
     CandidatoController() {
     }
+
+    //post, get, etc
+
 
     @Override
     void listarCandidatos() {

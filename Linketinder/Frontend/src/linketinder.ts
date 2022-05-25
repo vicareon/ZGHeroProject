@@ -13,10 +13,6 @@ const senhaCandidato = (<HTMLInputElement>document.querySelector("#senhaCandidat
 const botaoSalvarCadastroCandidato = document.getElementById("botaoSalvarCadastroCandidato");
 
 botaoSalvarCadastroCandidato.addEventListener('click', () => {
-    cadastroUsuario()
-});
-
-function cadastroUsuario() {
     const candidato: { _nome: string, _email: string, _cep: string, _estado: string, _pais: string, _descricao: string, _cpf: string, _formacaoAcademica: string, _idade: string, _senha: string } = {
         _nome: nomeCandidato.value,
         _email: emailCandidato.value,
@@ -35,14 +31,14 @@ function cadastroUsuario() {
     validaEmail(emailCandidato.value)
     validaCPFouCNPJ(cpfCandidato.value)
 
-    fetch('http://localhost:8080/cadastroCandidato', {
+    fetch('http://localhost:5050/cadastroCandidato', {
         method: 'POST',
         mode: 'no-cors',
         body: Object.keys(candidato)
             .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(candidato[k])}`)
             .join('&')
     }).then(T => T.json())
-}
+});
 
 //Formulário de cadastro de empresa
 const nomeEmpresa = (<HTMLInputElement>document.querySelector("#nomeEmpresa"));
@@ -54,13 +50,9 @@ const descricaoEmpresa = (<HTMLInputElement>document.querySelector("#descricaoEm
 const senhaEmpresa = (<HTMLInputElement>document.querySelector("#senhaEmpresa"));
 const cnpjEmpresa = (<HTMLInputElement>document.querySelector("#cnpjEmpresa"));
 
-const botaoSalvarCadastroEmpresa = document.getElementById("botaoSalvarCadastroCandidato");
+const botaoSalvarCadastroEmpresa = document.getElementById("botaoSalvarCadastroEmpresa");
 
-botaoSalvarCadastroCandidato.addEventListener('click', () => {
-    cadastroEmpresa()
-});
-
-function cadastroEmpresa() {
+botaoSalvarCadastroEmpresa.addEventListener('click', () => {
     const empresa: { _nome: string, _email: string, _cep: string, _estado: string, _pais: string, _descricao: string, _cnpj: string, _senha: string } = {
         _nome: nomeEmpresa.value,
         _email: emailEmpresa.value,
@@ -84,7 +76,7 @@ function cadastroEmpresa() {
             .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(empresa[k])}`)
             .join('&')
     }).then(T => T.json())
-}
+});
 
 //funções de validação com regex
 const regexCPFouCNPJ = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;

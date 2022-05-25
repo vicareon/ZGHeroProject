@@ -11,9 +11,6 @@ var idadeCandidato = document.querySelector("#idadeCandidato");
 var senhaCandidato = document.querySelector("#senhaCandidato");
 var botaoSalvarCadastroCandidato = document.getElementById("botaoSalvarCadastroCandidato");
 botaoSalvarCadastroCandidato.addEventListener('click', function () {
-    cadastroUsuario();
-});
-function cadastroUsuario() {
     var candidato = {
         _nome: nomeCandidato.value,
         _email: emailCandidato.value,
@@ -30,14 +27,14 @@ function cadastroUsuario() {
     validaCEP(cepCandidato.value);
     validaEmail(emailCandidato.value);
     validaCPFouCNPJ(cpfCandidato.value);
-    fetch('http://localhost:8080/cadastroCandidato', {
+    fetch('http://localhost:5050/cadastroCandidato', {
         method: 'POST',
         mode: 'no-cors',
         body: Object.keys(candidato)
             .map(function (k) { return "".concat(encodeURIComponent(k), "=").concat(encodeURIComponent(candidato[k])); })
             .join('&')
     }).then(function (T) { return T.json(); });
-}
+});
 //Formulário de cadastro de empresa
 var nomeEmpresa = document.querySelector("#nomeEmpresa");
 var emailEmpresa = document.querySelector("#emailEmpresa");
@@ -47,11 +44,8 @@ var paisEmpresa = document.querySelector("#paisEmpresa");
 var descricaoEmpresa = document.querySelector("#descricaoEmpresa");
 var senhaEmpresa = document.querySelector("#senhaEmpresa");
 var cnpjEmpresa = document.querySelector("#cnpjEmpresa");
-var botaoSalvarCadastroEmpresa = document.getElementById("botaoSalvarCadastroCandidato");
-botaoSalvarCadastroCandidato.addEventListener('click', function () {
-    cadastroEmpresa();
-});
-function cadastroEmpresa() {
+var botaoSalvarCadastroEmpresa = document.getElementById("botaoSalvarCadastroEmpresa");
+botaoSalvarCadastroEmpresa.addEventListener('click', function () {
     var empresa = {
         _nome: nomeEmpresa.value,
         _email: emailEmpresa.value,
@@ -73,7 +67,7 @@ function cadastroEmpresa() {
             .map(function (k) { return "".concat(encodeURIComponent(k), "=").concat(encodeURIComponent(empresa[k])); })
             .join('&')
     }).then(function (T) { return T.json(); });
-}
+});
 //funções de validação com regex
 var regexCPFouCNPJ = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
 var regexCEP = /([0-9]{5}[-\. ]?[0-9]{3})/;
