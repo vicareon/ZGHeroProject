@@ -37,6 +37,8 @@ class ServletCandidato extends HttpServlet{
             PrintWriter out = new PrintWriter()
             resposta.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED)
             out.println("Erro na criação de candidato.")
+
+            e.printStackTrace()
         }
     }
 }

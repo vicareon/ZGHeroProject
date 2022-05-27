@@ -18,13 +18,13 @@ class ServletEmpresa extends HttpServlet{
             this.empresaController.inserirEmpresa(empresa)
 
             empresa.setNome(requisicao.getParameter("_nome"))
-            empresa.setEmail(requisicao.getParameter("_nome"))
-            empresa.setCep(requisicao.getParameter("_nome"))
-            empresa.setEstado(requisicao.getParameter("_nome"))
-            empresa.setPais(requisicao.getParameter("_nome"))
-            empresa.setDescricao(requisicao.getParameter("_nome"))
-            empresa.setCnpj(requisicao.getParameter("_nome"))
-            empresa.setSenha(requisicao.getParameter("_nome"))
+            empresa.setEmail(requisicao.getParameter("_email"))
+            empresa.setCep(requisicao.getParameter("_cep"))
+            empresa.setEstado(requisicao.getParameter("_estado"))
+            empresa.setPais(requisicao.getParameter("_pais"))
+            empresa.setDescricao(requisicao.getParameter("_descricao"))
+            empresa.setCnpj(requisicao.getParameter("_cnpj"))
+            empresa.setSenha(requisicao.getParameter("_senha"))
 
             empresaController.inserirEmpresa(empresa)
 
@@ -37,6 +37,8 @@ class ServletEmpresa extends HttpServlet{
             PrintWriter out = new PrintWriter()
             resposta.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED)
             out.println("Erro na criação de empresa.")
+
+            e.printStackTrace()
         }
     }
 }
