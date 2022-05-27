@@ -206,6 +206,22 @@ Para dar uma olhada no código, navegue até a branch microservice :)
 ## Trilha 6: REST/RESTFUL API
 **Assunto**: APIs e integração definitiva entre front e backend
 
-**Descrição do desafio**: Conexão entre front e back via API REST sem utilização de frameworks com operações de cadastro, inserção de competências e vagas mapeados em endpoints e com comunicação com a model para persistência dos dados no banco de dados.
+**Descrição do desafio**: Como uma expansão da trilha anterior, também tive dificuldades nessa trilha devido ao seu alto nível de complexidade com o prazo extremamente curto de entrega - a ideia foi a implementação de uma api REST/RESTFUL de cadastro de candidato e empresa. 
 
-**Data de entrega**: pendente
+Essas foram as implementações do desafio:
+- Configuração do Apache Tomcat para rodar dentro do Intellij com deploy de artefatos
+- Criação de servlets mapeados para servir como endpoints no backend junto com o controller, aproveitando a lógica de implementação do programa direto no terminal (para mais informações, ver classe Main)
+- Blocos try/catch com erros em protocolo HTTP
+- Criação de arquivo .war na pasta local de webapps do Apache Tomcat
+- Adição de suporte à aplicação web no Intellij: os arquivos que ficavam na pasta de Frontend, separada do resto do programa, agora ficam na pasta webapp dentro da src/main
+- Criação das páginas HTML para o cadastro de Competências e cadastro de Vagas
+
+Expandindo a lista de tutoriais, dúvidas respondidas e artigos da trilha anterior:
+- [A Step by Step Guide to Installing Apache Tomcat 9 Linux](https://www.makeuseof.com/a-step-by-step-guide-to-installing-apache-tomcat-linux/), por Jerome Davidson
+- [Enable Web application support](https://www.jetbrains.com/help/idea/enabling-web-application-support.html#:~:text=In%20the%20Project%20tool%20window,version%20of%20the%20Servlet%20specification), da Jetbrains
+- [What is RESTful API?](https://www.techtarget.com/searchapparchitecture/definition/RESTful-API), por Alexander S. Gillis
+- [Java servlet RESTful Client with RESTEasy](https://zetcode.com/javaservlet/restclient/), da Zetcode
+- [Intellij fails deploying exploded war to Tomcat](https://stackoverflow.com/questions/47078199/intellij-fails-deploying-exploded-war-to-tomcat), no Stackoverflow
+- [Generating a War file from a plain Intellij project](https://dzone.com/articles/generating-war-file-plain), por Zemian Deng
+
+**Data de entrega**: 27/05/2022
