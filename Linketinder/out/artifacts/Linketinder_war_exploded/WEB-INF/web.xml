@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <servlet>
+        <servlet-name>ServletCandidato</servlet-name>
+        <servlet-class>servletEndpoints.ServletCandidato</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCandidato</servlet-name>
+        <url-pattern>/cadastroCandidato</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletEmpresa</servlet-name>
+        <servlet-class>servletEndpoints.ServletEmpresa</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletEmpresa</servlet-name>
+        <url-pattern>/cadastroEmpresa</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletCompetencia</servlet-name>
+        <servlet-class>servletEndpoints.ServletCompetencia</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCompetencia</servlet-name>
+        <url-pattern>/cadastroCompetencia</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ServletVaga</servlet-name>
+        <servlet-class>servletEndpoints.ServletVaga</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletVaga</servlet-name>
+        <url-pattern>/cadastroVaga</url-pattern>
+    </servlet-mapping>
+</web-app>

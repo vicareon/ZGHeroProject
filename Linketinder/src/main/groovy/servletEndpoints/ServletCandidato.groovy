@@ -13,20 +13,30 @@ class ServletCandidato extends HttpServlet{
     CandidatoController candidatoController = new CandidatoController()
 
     void doPost(HttpServletRequest requisicao, HttpServletResponse resposta){
-        Candidato candidato = new Candidato()
+        try{
+            Candidato candidato = new Candidato()
 
-        candidato.setNome(requisicao.getParameter("nome"))
-        candidato.setEmail(requisicao.getParameter("email"))
-        candidato.setEstado(requisicao.getParameter("estado"))
-        candidato.setPais(requisicao.getParameter("pais"))
-        candidato.setDescricao(requisicao.getParameter("descricao"))
-        candidato.setCpf(requisicao.getParameter("cpf"))
-        candidato.setFormacaoAcademica(requisicao.getParameter("formacaoAcademica"))
-        candidato.setIdade(requisicao.getParameter("idade") as int)
-        candidato.setSenha(requisicao.getParameter("senha"))
+            candidato.setNome(requisicao.getParameter("_nome"))
+            candidato.setEmail(requisicao.getParameter("_email"))
+            candidato.setEstado(requisicao.getParameter("_estado"))
+            candidato.setPais(requisicao.getParameter("_pais"))
+            candidato.setDescricao(requisicao.getParameter("_descricao"))
+            candidato.setCpf(requisicao.getParameter("_cpf"))
+            candidato.setFormacaoAcademica(requisicao.getParameter("_formacaoAcademica"))
+            candidato.setIdade(requisicao.getParameter("_idade") as int)
+            candidato.setSenha(requisicao.getParameter("_senha"))
 
-        this.candidatoController.inserirCandidato(candidato)
+            this.candidatoController.inserirCandidato(candidato)
 
-        resposta.setStatus(HttpServletResponse.SC_CREATED)
+            resposta.setContentType("text/html")
+            PrintWriter out = new PrintWriter()
+            resposta.setStatus(HttpServletResponse.SC_CREATED)
+            out.println("Criado com sucesso!")
+        } catch(Exception e){
+            resposta.setContentType("text/html")
+            PrintWriter out = new PrintWriter()
+            resposta.setStatus(HttpServletResponse.SC_EXPECTATION_FAILED)
+            out.println("Erro na criação de candidato.")
+        }
     }
 }

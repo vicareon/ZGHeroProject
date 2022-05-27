@@ -1,12 +1,14 @@
 plugins {
-    id 'groovy'
     id 'war'
+    id 'groovy'
+    id 'java'
 }
 
-group 'org.example'
+group 'zgheroproject'
 version '1.0-SNAPSHOT'
 
 repositories {
+    mavenCentral()
     mavenCentral()
 }
 

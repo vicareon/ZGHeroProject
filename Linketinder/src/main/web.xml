@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletCandidato</servlet-name>
-        <url-pattern>/cadastroCandidato</url-pattern>
+        <url-pattern>/Gradle___zgheroproject___Linketinder_Webapp_1_0_SNAPSHOT_war/cadastroCandidato</url-pattern>
     </servlet-mapping>
 
     <servlet>
